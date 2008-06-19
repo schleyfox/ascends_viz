@@ -7,4 +7,5 @@ task :import do
   # Ex:
   #   Foo.import_yaml(FileList["input/*.yml"].to_a)
   get_db_conn(ENV["GTRON_ENV"] || GTRON_ENV)
+  Flight.load(Dir.glob("#{GTRON_ROOT}/input/*"))
 end

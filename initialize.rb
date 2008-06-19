@@ -17,6 +17,8 @@ Dependencies.load_paths << "#{GTRON_ROOT}/lib/"
 
 require 'active_record'
 
+#custom requires
+require 'kml'
 
 def get_db_conn(env)
   env = env.to_sym

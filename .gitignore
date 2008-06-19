@@ -1,2 +1,4 @@
-input
+input/*
+output/*
 log/*
+db/*.sqlite3
