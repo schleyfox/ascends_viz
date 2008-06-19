@@ -6,7 +6,8 @@ task :plot_datapoint_paths do
   folder.features = DataPoint.find(:all).map do |dp|
     KML::Placemark.new(:name => "Point #{dp.id}",
                        :geometry => KML::Point.new( 
-                          :coordinates => [dp.lon, dp.lat, dp.altitude]))
+                          :coordinates => [dp.lon, dp.lat, dp.altitude],
+                          :altitude_mode => 'absolute'))
   end
 
   kml.objects << folder
