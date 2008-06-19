@@ -3,3 +3,8 @@ flights in support of the ASCENDS mission.  Data is processed from these
 flights and then matched up with model outputs to create visualizations
 in Google Earth.  The goal is to create a ground overlay of carbon column
 readings and then a cross-sectional curtain file along the flight path.
+
+Usage Requirements:
+
+* ruby_kml (gem install schleyfox-ruby_kml -s http://gems.github.com)
+* gigantron (gem install gigantron)
