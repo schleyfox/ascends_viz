@@ -31,6 +31,10 @@ class TestFlight < Test::Unit::TestCase
     should "get date" do
       assert_equal Date.new(2008,6,19), @flight.date
     end
+
+    should "have 10 data_points" do
+      assert_equal 10, @flight.data_points.size
+    end
   end
 
 end
