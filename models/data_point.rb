@@ -25,6 +25,7 @@ class DataPoint < ActiveRecord::Base
       dp
     end
     puts "DROPPING #{co2.size} PIECES OF VERY IMPORTANT DATA"
+    data_points
   end
 
 end
