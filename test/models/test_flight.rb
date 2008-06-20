@@ -6,10 +6,16 @@ class TestFlight < Test::Unit::TestCase
     Gigantron.migrate_dbs
     Flight.delete_all
     DataPoint.delete_all
+    
+    Flight.create(:flight_number => 7, :date => "2006-09-20")
     @data_dir = "#{GTRON_ROOT}/test/sample_data"
+
   end
 
   should_have_many :data_points
+
+  should_not_allow_values_for :date, 102007, 20080619, "02/14/05"
+  should_allow_values_for :date, "2009-11-16", "1998-03-04"
 
   context "Using sample directory structure" do
     setup do
