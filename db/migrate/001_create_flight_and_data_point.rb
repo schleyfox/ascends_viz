@@ -1,7 +1,7 @@
 class CreateFlightAndDataPoint < ActiveRecord::Migration
   def self.up
     create_table :flights do |t|
-      t.date :date
+      t.column :date, :string, :limit => (4+1+2+1+2)
       t.integer :flight_number
     end
 
