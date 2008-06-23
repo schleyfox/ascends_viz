@@ -4,11 +4,13 @@ task :plot_flightpath_with_co2_columns do
   kml = KMLFile.new
   doc = KML::Document.new(:name => "CO2 Columns")
   doc.features = DataPoint.find(:all).map do |dp|
-    KML::Placemark.new( :name => dp.co2_ppm,
-      :geometry => KML::Point.new(:coordinates => [dp.lon,dp.lat,dp.altitude+25],
-      :altitude_mode => 'absolute'
-                                 )
-                      ) if dp.co2_ppm
+    if dp.co2_ppm
+      placemark = KML::Placemark.new( :name => dp.co2_ppm)
+      sty = KML::Style.new(:poly_style => KML::PolyStyle.new(:color => Co2ColorCode.colorify(dp.co2_ppm), :outline => false))
+      cyl = KmlShapes.cylinder(dp.lon, dp.lat, dp.altitude, 10)
+      placemark.features << sty << cy1
+      placemark
+    end
   end.compact
   kml.objects << doc
   File.open("output/co2_columns.kml", "w") {|f| f.write kml.render}
