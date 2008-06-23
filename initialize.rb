@@ -24,6 +24,7 @@ def get_db_conn(env)
   env = env.to_sym
   #set up logging
   ActiveRecord::Base.logger = Logger.new("#{GTRON_ROOT}/log/#{env}.log")
+  ActiveRecord::Base.logger.level = Logger::INFO
 
   #load in dbs from database.yml
   ActiveRecord::Base.establish_connection(

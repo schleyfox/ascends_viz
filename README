@@ -1,4 +1,4 @@
-ASCENDS Data Visualization is a project to visualize CO2 readings from UAV 
+ASCENDS Data Visualization is a project to visualize CO2 readings from UAV
 flights in support of the ASCENDS mission.  Data is processed from these
 flights and then matched up with model outputs to create visualizations
 in Google Earth.  The goal is to create a ground overlay of carbon column

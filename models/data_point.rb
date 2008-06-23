@@ -2,7 +2,7 @@ class DataPoint < ActiveRecord::Base
   belongs_to :flight
 
   def self.from_files(dir_name)
-    gps = File.read(Dir.glob("#{dir_name}/nav*.txt").first).split("\r\n")
+    gps = File.read(Dir.glob("#{dir_name}/nav*.txt").first).split(/\r?\n/)
     gps = gps[8...gps.size]
     data_point_coords = gps.map do |line|
       dp = DataPoint.new
