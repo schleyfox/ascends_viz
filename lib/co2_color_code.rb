@@ -1,16 +1,16 @@
 class Co2ColorCode
   def self.colorify(value)
-    value = value.dup
-    if value == -9999
-      return rgba(0,0,0,0)
+    v = value.to_f
+    if v == -9999
+      return abgr(0,0,0,0)
     else
-      value = normalize(value, 370, 450)
-      return rgba(value*255,value*255,value*255,0)
+      v = normalize(v, 370, 450)
+      return abgr(150 ,(1.0-v)*255,(1.0-v)*255,(1.0-v)*255)
     end
   end
 
-  def self.rgba(r,g,b,a)
-    "%02X%02X%02X%02X" % [a,r,g,b]
+  def self.abgr(a,b,g,r)
+    "%02X%02X%02X%02X" % [a,b,g,r]
   end
 
   def self.normalize(value, min, max)
