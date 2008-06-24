@@ -4,3 +4,4 @@ log/*
 db/*.sqlite3
 *.swp
 database.yml
+doc/*

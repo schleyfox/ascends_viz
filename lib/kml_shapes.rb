@@ -13,18 +13,36 @@ include Math
 # the ones without that suffix return KML::Polygon
 class KmlShapes
 
+  # Creates an extruded circle centered on (@lat@, @lon@) at altitude @alt@
+  # with a radius of @radius@ (in meters)
+  #
+  # Google Earth is extremely weird about making real cylinders (I would love
+  # a triangle strip primitive) so cylinders are faked by extruding towards
+  # the center of the earth.  Luckily this meets the needs of the ASCENDS
+  # visualization
   def self.cylinder(lon, lat, alt, radius)
     cylinder = circle(lon, lat, alt, radius)
     cylinder.extrude = true
     cylinder
   end
 
+  # Creates a Google Earth polygon that is a circle centered on (@lat@, @lon@)
+  # at an altitude of @alt@ with a radius of @radius@ (in meters).
   def self.circle(lon, lat, alt, radius)
     bounds = circle_coords(lon, lat, alt, radius)
-    KML::Polygon.new(:outer_boundary_is => format_bounds(bounds + [bounds.first]),
-                    :altitude_mode => 'absolute')
+    KML::Polygon.new(
+      :outer_boundary_is => format_bounds(bounds + [bounds.first]),
+      :altitude_mode => 'absolute'
+    )
   end
 
+  # generates coordinates in the form [[lon, lat, alt],...] for a circle
+  # centered on (@lon@, @lat@) at altitude @alt@ with a radius of @radius@
+  # (in meters)
+  #
+  # This code uses the haversine formula and was ported from a PHP
+  # Google Earth circle generator:
+  # http://dev.bt23.org/keyhole/circlegen/output.phps
   def self.circle_coords(lon, lat, alt, radius)
     lat = deg2rad(lat)
     lon = deg2rad(lon)
@@ -45,14 +63,18 @@ class KmlShapes
   end
 
   private
+
+  # converts degrees to radians
   def self.deg2rad(degree)
     degree.to_f*(PI/180.0)
   end
 
+  # converts radians to degrees
   def self.rad2deg(radian)
     radian.to_f*(180.0/PI)
   end
   
+  # returns LinearRing object with correct bounds
   def self.format_bounds(bounds)
     KML::LinearRing.new(:coordinates => bounds)
   end
