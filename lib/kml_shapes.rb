@@ -44,6 +44,37 @@ class KmlShapes
     bounds
   end
 
+  def heading(start, finish)
+    #longtide difference
+    a_big = deg2rad(start[1]-finish[1])
+    
+    #polar distance of end point
+    c = deg2rad(90.0-finish[0])
+    
+    #polar distance of start point
+    b = deg2rad(90.0-start[0])
+    
+    #cosine rule
+    a = acos(cos(b)*cos(c) + sin(b) * sin(c) * cos(a_big))
+    
+    #sine rule
+    c_big = asin(sin(a_big) * sin(c) / sin(a))
+    
+    b_big = deg2rad(180.0 - rad2deg(a_big) + rad2deg(c_big))
+    
+    #Normalize to North heading
+    if (start[0] > finish[0]) && (rad2deg(c_big) > 0.0) && (rad2deg(b_big) > 90.0)
+    
+      c_big = 180-(rad2deg(c_big))
+    end
+    
+    #we actually find heading counterclockwise from the meridian
+    #Correct this by negating
+    c_big = deg2rad(c_big)*-1.0
+    
+    return c_big
+  end
+
   private
   def self.deg2rad(degree)
     degree.to_f*(PI/180.0)
