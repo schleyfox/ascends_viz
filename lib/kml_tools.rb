@@ -3,15 +3,17 @@
 # in meters
 EARTH_RADIUS = 6378137.0
 
-include Math
 
-# This class contains routines to draw simple shapes in Google Earth.
-# I have been playing with Processing lately, so hopefully I can take away 
-# things from that and make GE a bit more fun.
+# This class contains routines to draw simple shapes and make geography
+# calculations in Google Earth. I have been playing with Processing lately,
+# so hopefully I can take away things from that and make GE a bit more fun.
 #
 # Methods with *_coords return ordered pairs of [lon,lat,altitude] while
 # the ones without that suffix return KML::Polygon
-class KmlShapes
+class KmlTools
+  #Get class methods and constants
+  include Math
+  extend Math
 
   # Creates an extruded circle centered on (@lat@, @lon@) at altitude @alt@
   # with a radius of @radius@ (in meters)
@@ -62,35 +64,41 @@ class KmlShapes
     bounds
   end
 
-  def heading(start, finish)
+  def self.heading(start, finish)
+    start_lat = start[0]
+    start_lon = start[1]
+    finish_lat = finish[0]
+    finish_lon = finish[1]
+
     #longtide difference
-    a_big = deg2rad(start[1]-finish[1])
+    a_big = deg2rad(start_lon-finish_lon)
     
     #polar distance of end point
-    c = deg2rad(90.0-finish[0])
+    c = deg2rad(90.0-finish_lat)
     
     #polar distance of start point
-    b = deg2rad(90.0-start[0])
+    b = deg2rad(90.0-start_lat)
     
     #cosine rule
-    a = acos(cos(b)*cos(c) + sin(b) * sin(c) * cos(a_big))
+    a = acos((cos(b) * cos(c)) + ((sin(b) * sin(c)) * cos(a_big)))
     
     #sine rule
     c_big = asin(sin(a_big) * sin(c) / sin(a))
     
-    b_big = deg2rad(180.0 - rad2deg(a_big) + rad2deg(c_big))
+    b_big = deg2rad(180.0 - (rad2deg(a_big) + rad2deg(c_big)))
     
     #Normalize to North heading
-    if (start[0] > finish[0]) && (rad2deg(c_big) > 0.0) && (rad2deg(b_big) > 90.0)
-    
-      c_big = 180-(rad2deg(c_big))
+    if (start[0] > finish[0]) && (rad2deg(c_big) > 0.0) && 
+      (rad2deg(b_big) > 90.0)
+
+      c_big = deg2rad(180.0-(rad2deg(c_big)))
     end
     
     #we actually find heading counterclockwise from the meridian
     #Correct this by negating
-    c_big = deg2rad(c_big)*-1.0
+    c_big = c_big*-1.0
     
-    return c_big
+    return rad2deg(c_big)
   end
 
   private
