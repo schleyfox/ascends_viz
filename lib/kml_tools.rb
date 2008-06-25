@@ -71,7 +71,7 @@ class KmlTools
   def self.square_coords(lon, lat, alt, heading, side_length)
     radius = side_length/(sqrt(2))
 
-    angles = [45, 135, 225, 315].map{|a| (heading + a) % 360}
+    angles = [45, 135, 225, 315].map{|a| (heading + a) % 360.0}
 
     bounds = angles.map do |angle|
       haversine(lon, lat, radius, angle) + [alt]
@@ -111,20 +111,26 @@ class KmlTools
     a = acos((cos(b) * cos(c)) + ((sin(b) * sin(c)) * cos(a_big)))
     
     #sine rule
-    c_big = asin(sin(a_big) * sin(c) / sin(a)) rescue 0
+    c_big = 0.0
+    begin
+      c_big = asin(sin(a_big) * sin(c) / sin(a)) 
+    rescue
+      c_big = 1.0
+    end
     
     b_big = deg2rad(180.0 - (rad2deg(a_big) + rad2deg(c_big)))
     
     #Normalize to North heading
-    if (start[0] > finish[0]) && (rad2deg(c_big) > 0.0) && 
+    if (start_lat > finish_lat) && (rad2deg(c_big) > 0.0) && 
       (rad2deg(b_big) > 90.0)
 
       c_big = deg2rad(180.0-(rad2deg(c_big)))
     end
     
     #we actually find heading counterclockwise from the meridian
-    #Correct this by negating
-    c_big = c_big*-1.0
+    #Correct this by negating 
+    # Start tweaking with random numbers
+    c_big = 360-c_big
     
     return rad2deg(c_big)
   end
