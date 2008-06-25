@@ -54,6 +54,12 @@ class KmlTools
     bounds
   end
 
+  def self.square_column(lon, lat, alt, heading, side_length)
+    square = square(lon, lat, alt, heading, side_length)
+    square.extrude = true
+    square
+  end
+
   def self.square(lon, lat, alt, heading, side_length)
     bounds = square_coords(lon, lat, alt, heading, side_length)
     KML::Polygon.new(
@@ -105,7 +111,7 @@ class KmlTools
     a = acos((cos(b) * cos(c)) + ((sin(b) * sin(c)) * cos(a_big)))
     
     #sine rule
-    c_big = asin(sin(a_big) * sin(c) / sin(a))
+    c_big = asin(sin(a_big) * sin(c) / sin(a)) rescue 0
     
     b_big = deg2rad(180.0 - (rad2deg(a_big) + rad2deg(c_big)))
     
