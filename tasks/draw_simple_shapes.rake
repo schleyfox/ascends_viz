@@ -13,7 +13,15 @@ task :draw_simple_shapes do
   cylinder = KmlTools.cylinder(50, 37, 10000,1000)
   cylinder_p.features << cy_sty << cylinder
 
-  doc.features << circle_p << cylinder_p
+  square_p = KML::Placemark.new(:name => "Square")
+  square = KmlTools.square(37,37,4000,45,100000)
+  square_p.features << square
+
+  square1_p = KML::Placemark.new(:name => "Square1")
+  square1 = KmlTools.square(37,37,4000,45.1,100000)
+  square1_p.features << square1
+
+  doc.features << circle_p << cylinder_p << square_p << square1_p
   kml.objects << doc
   puts kml
   File.open("output/simple_shapes.kml", "w") {|f| f.write kml.render }

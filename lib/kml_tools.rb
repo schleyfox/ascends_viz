@@ -46,29 +46,51 @@ class KmlTools
   # Google Earth circle generator:
   # http://dev.bt23.org/keyhole/circlegen/output.phps
   def self.circle_coords(lon, lat, alt, radius)
-    lat = deg2rad(lat)
-    lon = deg2rad(lon)
-
-    d = radius/EARTH_RADIUS
 
     bounds = []
     for i in (0...36)
-      radial = deg2rad(i*10)
-      lat_rad = asin(sin(lat)*cos(d) + cos(lat)*sin(d)*cos(radial))
-      dlon_rad = atan2(sin(radial)*sin(d)*cos(lat),
-                       cos(d) - (sin(lat)*sin(lat_rad)));
-      lon_rad = ((lon + dlon_rad + PI) % (2*PI)) - PI
-
-      bounds << [rad2deg(lon_rad), rad2deg(lat_rad), alt]
+      bounds << haversine(lon, lat, radius, i*10) + [alt]
     end
     bounds
   end
 
+  def self.square(lon, lat, alt, heading, side_length)
+    bounds = square_coords(lon, lat, alt, heading, side_length)
+    KML::Polygon.new(
+      :outer_boundary_is => format_bounds(bounds + [bounds.first]),
+      :altitude_mode => 'absolute'
+    )
+  end
+
+  def self.square_coords(lon, lat, alt, heading, side_length)
+    radius = side_length/(sqrt(2))
+
+    angles = [45, 135, 225, 315].map{|a| (heading + a) % 360}
+
+    bounds = angles.map do |angle|
+      haversine(lon, lat, radius, angle) + [alt]
+    end
+  end
+
+  def self.haversine(lon, lat, radius, angle)
+    d = radius/EARTH_RADIUS
+    lat = deg2rad(lat)
+    lon = deg2rad(lon)
+
+    radial = deg2rad(angle)
+    lat_rad = asin(sin(lat)*cos(d) + cos(lat)*sin(d)*cos(radial))
+    dlon_rad = atan2(sin(radial)*sin(d)*cos(lat),
+                     cos(d) - (sin(lat)*sin(lat_rad)));
+    lon_rad = ((lon + dlon_rad + PI) % (2*PI)) - PI
+
+    [rad2deg(lon_rad), rad2deg(lat_rad)]
+  end
+
   def self.heading(start, finish)
-    start_lat = start[0]
-    start_lon = start[1]
-    finish_lat = finish[0]
-    finish_lon = finish[1]
+    start_lat = start[1]
+    start_lon = start[0]
+    finish_lat = finish[1]
+    finish_lon = finish[0]
 
     #longtide difference
     a_big = deg2rad(start_lon-finish_lon)
