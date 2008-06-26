@@ -1,4 +1,4 @@
-desc "Plots the lats and lons of datapoints as placemarks in Google Earth "
+desc "Plots the flightpath in Google Earth"
 task :plot_datapoint_paths do
   get_db_conn(GTRON_ENV)
   kml = KMLFile.new
