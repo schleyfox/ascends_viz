@@ -83,6 +83,18 @@ class KmlTools
     end
   end
 
+  # Generates coordinates for points at distance @length@ along the @heading@
+  # the line formed by connecting the two coordinates is perpendicular to the
+  # heading
+  def self.column_pair(lon, lat, alt, heading, length)
+    radius = length/2.0
+    angles = [90.0, 270.0].map{|a| (heading+a) % 360.0}
+
+    bounds = angles.map do |angle|
+      haversine(lon, lat, radius, angle) + [alt]
+    end
+  end
+
   # Calculates the [lon, lat] of a point at great circle @distance@ meters
   # from [@lon@, @lat@] at heading @angle@ (degrees).
   def self.haversine(lon, lat, distance, angle)
