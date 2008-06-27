@@ -10,8 +10,7 @@ class Flight < ActiveRecord::Base
       flight = Flight.new(:date => Date.strptime(date, "%m%d%y").to_s,
                           :flight_number => flight_number)
       flight.save
-      flight.data_points = DataPoint.from_files(dir)
-      flight.save
+      DataPoint.from_files(dir, flight)
       flight
     end
   end

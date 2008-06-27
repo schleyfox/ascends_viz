@@ -1,7 +1,7 @@
 class DataPoint < ActiveRecord::Base
   belongs_to :flight
 
-  def self.from_files(dir_name)
+  def self.from_files(dir_name, flight)
     gps = File.read(Dir.glob("#{dir_name}/nav*.txt").first).split(/\r?\n/)
     gps = gps[8...gps.size]
     data_point_coords = gps.map do |line|
@@ -11,7 +11,7 @@ class DataPoint < ActiveRecord::Base
       dp.lon = data.shift
       dp.lat = data.shift
       dp.altitude = data.shift
-      dp.save
+      dp.flight_id = flight.id
       dp
     end
 
@@ -20,11 +20,11 @@ class DataPoint < ActiveRecord::Base
     data_points = data_point_coords.map do |dp|
       if dp.altitude > 0
         dp.co2_ppm = co2.shift
-        dp.save
       end
       dp
     end
-    puts "DROPPING #{co2.size} PIECES OF VERY IMPORTANT DATA"
+    data_points.each{|dp| dp.save }
+    puts "DROPPING #{co2.size} PIECES OF VERY IMPORTANT DATA" if co2.size
     data_points
   end
 
