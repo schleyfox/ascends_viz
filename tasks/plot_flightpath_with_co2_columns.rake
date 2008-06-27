@@ -19,7 +19,8 @@ task :plot_flightpath_with_co2_columns do
       end
       
       col = KmlTools.square_column(dp.lon, dp.lat, dp.altitude, heading, 150)
-      placemark = KML::Placemark.new( :name => heading.to_s)
+
+      placemark = KML::Placemark.new( :name => dp.co2_ppm)
       placemark.features << sty << col
       doc.features << placemark
     end

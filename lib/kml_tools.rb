@@ -140,9 +140,7 @@ class KmlTools
     b_big = deg2rad(180.0 - (rad2deg(a_big) + rad2deg(c_big)))
     
     #Normalize to North heading
-    if (start_lat > finish_lat) && (rad2deg(c_big) > 0.0) && 
-      (rad2deg(b_big) > 90.0)
-
+    if (start_lat > finish_lat) 
       c_big = deg2rad(180.0-(rad2deg(c_big)))
     end
     
