@@ -15,8 +15,8 @@ class DataPoint < ActiveRecord::Base
       dp
     end
 
-    co2 = File.read(Dir.glob("#{dir_name}/lear*.txt").first).split(/\r?\n/)
-    co2 = co2[1...co2.size].map{|x| x.split(/,\s+/)[2].to_f }
+    co2 = cdr(File.read(Dir.glob("#{dir_name}/lear*.txt").first).split(/\r?\n/))
+    co2 = co2.map{|x| x.split(/,\s+/)[2].to_f }
     data_points = data_point_coords.map do |dp|
       if dp.altitude > 0
         dp.co2_ppm = co2.shift
@@ -24,7 +24,8 @@ class DataPoint < ActiveRecord::Base
       dp
     end
     data_points.each{|dp| dp.save }
-    puts "DROPPING #{co2.size} PIECES OF VERY IMPORTANT DATA" if co2.size
+    ActiveRecord::Base.logger.warn( 
+      "DROPPING #{co2.size} PIECES OF VERY IMPORTANT DATA") if co2.size
     data_points
   end
 

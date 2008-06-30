@@ -1,5 +1,6 @@
 desc "Tests out my shape drawing code by drawing simple shapes"
 task :draw_simple_shapes do
+  output_path = ENV["OUTPUT_PATH"] || "#{GTRON_ROOT}/output"
   kml = KMLFile.new
   doc = KML::Document.new(:name => "Simple Shapes")
   circle_p = KML::Placemark.new(:name => "Circle")
@@ -24,5 +25,5 @@ task :draw_simple_shapes do
   doc.features << circle_p << cylinder_p << square_p << square1_p
   kml.objects << doc
   puts kml
-  File.open("output/simple_shapes.kml", "w") {|f| f.write kml.render }
+  File.open("#{output_path}/simple_shapes.kml", "w") {|f| f.write kml.render }
 end

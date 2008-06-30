@@ -1,5 +1,6 @@
 desc "Plots the flightpath in Google Earth"
 task :plot_datapoint_paths do
+  output_path = ENV["OUTPUT_PATH"] || "#{GTRON_ROOT}/output"
   get_db_conn(GTRON_ENV)
   kml = KMLFile.new
   doc = KML::Document.new(:name => "ASCENDS Flight Paths")
@@ -16,5 +17,5 @@ task :plot_datapoint_paths do
   doc.features << style << placemark
 
   kml.objects << doc
-  File.open("output/datapoint_paths.kml","w") {|f| f.write kml.render }
+  File.open("#{output_path}/datapoint_paths.kml","w") {|f| f.write kml.render }
 end

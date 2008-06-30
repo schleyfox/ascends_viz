@@ -1,14 +1,19 @@
-desc "Plot columns"
+require 'benchmark'
+
+desc "Plot columns of CO2"
 task :plot_flightpath_with_co2_columns do
+  output_path = ENV["OUTPUT_PATH"] || "#{GTRON_ROOT}/output"
   get_db_conn(GTRON_ENV)
 
   kml = KMLFile.new
   doc = KML::Document.new(:name => "CO2 Columns")
   
+
   dps = DataPoint.find(:all)
   
   heading = 0
   column_coords = []
+  #assemble datapoint tuples as [Column Pair coordinates, CO2 measure]
   dps.each_with_index do |dp, i|
     if dp.co2_ppm
       if i < (dps.size-1)
@@ -20,6 +25,7 @@ task :plot_flightpath_with_co2_columns do
     end
   end
 
+  #create polygons from computed coordinates.
   column_coords.each_with_index do |c, i|
     if i < column_coords.size-1
       sty = KML::Style.new(:poly_style => KML::PolyStyle.new(
@@ -34,7 +40,7 @@ task :plot_flightpath_with_co2_columns do
       placemark.features << sty << col
       doc.features << placemark
     end
-  end.compact
+  end
   kml.objects << doc
-  File.open("output/co2_columns.kml", "w") {|f| f.write kml.render}
+  File.open("#{output_path}/co2_columns.kml", "w") {|f| f.write kml.render}
 end

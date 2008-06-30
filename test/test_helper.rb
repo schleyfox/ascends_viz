@@ -21,4 +21,12 @@ module Test
   end
 end
 
+TEST_TMP = "#{GTRON_ROOT}/test/tmp"
 
+def bare_setup
+  FileUtils.mkdir TEST_TMP
+end
+
+def bare_teardown
+  FileUtils.rm_rf TEST_TMP
+end

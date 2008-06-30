@@ -19,6 +19,7 @@ require 'active_record'
 
 #custom requires
 require 'kml'
+require 'lib/lisp'
 
 def get_db_conn(env)
   env = env.to_sym

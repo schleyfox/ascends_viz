@@ -126,7 +126,7 @@ class Co2ColorCodeBar < Processing::App
       end
     end
 
-    save "#{GTRON_ROOT}/output/co2_color_bar.png"
+    save $co2_color_bar_file
     
     # close window and quit the method
     # There might be a cleaner way
