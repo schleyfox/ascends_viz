@@ -2,7 +2,7 @@ class DataPoint < ActiveRecord::Base
   belongs_to :flight
 
   def self.from_files(dir_name, flight)
-    gps = File.read(Dir.glob("#{dir_name}/nav*.txt").first).split(/\r?\n/)
+    gps = File.read(Dir.glob("#{dir_name}/insitu/nav*.txt").first).split(/\r?\n/)
     gps = gps[8...gps.size]
     data_point_coords = gps.map do |line|
       dp = DataPoint.new
@@ -15,7 +15,7 @@ class DataPoint < ActiveRecord::Base
       dp
     end
 
-    co2 = cdr(File.read(Dir.glob("#{dir_name}/lear*.txt").first).split(/\r?\n/))
+    co2 = cdr(File.read(Dir.glob("#{dir_name}/insitu/lear*.txt").first).split(/\r?\n/))
     co2 = co2.map{|x| x.split(/,\s+/)[2].to_f }
     data_points = data_point_coords.map do |dp|
       if dp.altitude > 0
