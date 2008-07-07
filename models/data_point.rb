@@ -19,7 +19,7 @@ class DataPoint < ActiveRecord::Base
     co2 = co2.map{|x| x.split(/,\s+/)[2].to_f }
     data_points = data_point_coords.map do |dp|
       if dp.altitude > 0
-        dp.co2_ppm = co2.shift
+        dp.insitu_co2 = co2.shift
       end
       dp
     end

@@ -15,13 +15,13 @@ task :plot_flightpath_with_co2_columns do
   column_coords = []
   #assemble datapoint tuples as [Column Pair coordinates, CO2 measure]
   dps.each_with_index do |dp, i|
-    if dp.co2_ppm
+    if dp.insitu_co2
       if i < (dps.size-1)
         heading = KmlTools.heading([dp.lon, dp.lat], 
                                    [dps[i+1].lon, dps[i+1].lat])
       end
       column_coords << [KmlTools.column_pair(dp.lon, dp.lat, dp.altitude,
-                                              heading, 150), dp.co2_ppm]
+                                              heading, 150), dp.insitu_co2]
     end
   end
 	
@@ -34,16 +34,17 @@ task :plot_flightpath_with_co2_columns do
     if i < column_coords.size-1 and !to_skip.include?(i)
       sty = KML::Style.new(:poly_style => KML::PolyStyle.new(
         :color => Co2ColorCode.colorify(c[1]), :outline => false))
+
       to_skip << i+1 
-	  tolerance = { :up => c[1] * (1+ppm_tolerance), :down => c[1] * (1-ppm_tolerance) }
-	  # Fuck line character limits
-	  if(tolerance[:up] > column_coords[i+1][1] and tolerance[:down] < column_coords[i+1][1] and i < column_coords.size-2)
-		coords = c[0].reverse + column_coords[i+2][0] + [c[0][1]]
-	  else
-	  # Because Andy is an idiot:
-	  #puts "First: "+c[0].reverse.join(", ") + "Second: " + column_coords[i+1][0].join(", ") + "Third: " + [c[0][1]].join(", ")
-		coords = c[0].reverse + column_coords[i+1][0] + [c[0][1]]
-	  end
+      tolerance = { :up => c[1] * (1+ppm_tolerance), :down => c[1] * (1-ppm_tolerance) }
+      # Fuck line character limits
+      if(tolerance[:up] > column_coords[i+1][1] and tolerance[:down] < column_coords[i+1][1] and i < column_coords.size-2)
+            coords = c[0].reverse + column_coords[i+2][0] + [c[0][1]]
+      else
+      # Because Andy is an idiot:
+      #puts "First: "+c[0].reverse.join(", ") + "Second: " + column_coords[i+1][0].join(", ") + "Third: " + [c[0][1]].join(", ")
+            coords = c[0].reverse + column_coords[i+1][0] + [c[0][1]]
+      end
 
       col = KML::Polygon.new( :outer_boundary_is => 
                              KML::LinearRing.new(:coordinates => coords),
