@@ -24,14 +24,27 @@ task :plot_flightpath_with_co2_columns do
                                               heading, 150), dp.co2_ppm]
     end
   end
+	
+  # PPM Tolerance: 5%
+  ppm_tolerance = 0.05
 
   #create polygons from computed coordinates.
+  to_skip = [] # Because I don't feel like thinking of a better way to do this
   column_coords.each_with_index do |c, i|
-    if i < column_coords.size-1
+    if i < column_coords.size-1 and !to_skip.include?(i)
       sty = KML::Style.new(:poly_style => KML::PolyStyle.new(
         :color => Co2ColorCode.colorify(c[1]), :outline => false))
-      
-      coords = c[0].reverse + column_coords[i+1][0] + [c[0][1]]
+      to_skip << i+1 
+	  tolerance = { :up => c[1] * (1+ppm_tolerance), :down => c[1] * (1-ppm_tolerance) }
+	  # Fuck line character limits
+	  if(tolerance[:up] > column_coords[i+1][1] and tolerance[:down] < column_coords[i+1][1] and i < column_coords.size-2)
+		coords = c[0].reverse + column_coords[i+2][0] + [c[0][1]]
+	  else
+	  # Because Andy is an idiot:
+	  #puts "First: "+c[0].reverse.join(", ") + "Second: " + column_coords[i+1][0].join(", ") + "Third: " + [c[0][1]].join(", ")
+		coords = c[0].reverse + column_coords[i+1][0] + [c[0][1]]
+	  end
+
       col = KML::Polygon.new( :outer_boundary_is => 
                              KML::LinearRing.new(:coordinates => coords),
                             :altitude_mode => 'absolute',
