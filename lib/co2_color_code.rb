@@ -2,8 +2,8 @@ require 'lib/ruby-processing'
 
 # global variables for the benefit of Processing
 # lower and upper bounds for recorded CO2 
-$co2_low_bound = 370 
-$co2_high_bound = 450
+$co2_low_bound = 0.0
+$co2_high_bound = 1.0
 
 # Co2ColorCode implements the color scale used to render columns of
 # CO2 in Google Earth.  
@@ -117,11 +117,11 @@ class Co2ColorCodeBar < Processing::App
       line(25,i,width,i)
 
       # find co2 measurement associated with generated normalized value
-      orig_val = Co2ColorCode.lerp($co2_low_bound, $co2_high_bound, value).to_i
+      orig_val = Co2ColorCode.lerp($co2_low_bound, $co2_high_bound, value) #.to_i
       
       # label significant points on the bar with values
-      if (orig_val % 10 == 0) && orig_val != last_line_number
-        last_line_number = orig_val
+      if ((orig_val*100).to_i % 10 == 0) && (orig_val*100).to_i != last_line_number
+        last_line_number = (orig_val*100).to_i
         text("#{orig_val}", 2, i+12)
       end
     end
