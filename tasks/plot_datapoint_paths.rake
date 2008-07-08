@@ -11,7 +11,7 @@ task :plot_datapoint_paths do
                                  :style_url => '#default_line')
   line.altitude_mode = 'absolute'
   line.coordinates = DataPoint.find(:all).map do |dp|
-    [dp.lon, dp.lat, dp.altitude + 25]
+    [dp.lon, dp.lat, dp.altitude]
   end
   placemark.features << line
   doc.features << style << placemark
