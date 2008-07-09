@@ -48,7 +48,7 @@ class KmlTools
   def self.circle_coords(lon, lat, alt, radius)
     bounds = []
     for i in (0...36)
-      bounds << haversine(lon, lat, radius, i*10) + [alt]
+      bounds << great_circle_coords(lon, lat, radius, i*10) + [alt]
     end
     bounds
   end
@@ -79,7 +79,7 @@ class KmlTools
     angles = [45, 135, 225, 315].map{|a| (heading + a) % 360.0}
 
     bounds = angles.map do |angle|
-      haversine(lon, lat, radius, angle) + [alt]
+      great_circle_coords(lon, lat, radius, angle) + [alt]
     end
   end
 
@@ -91,13 +91,29 @@ class KmlTools
     angles = [90.0, 270.0].map{|a| (heading+a) % 360.0}
 
     bounds = angles.map do |angle|
-      haversine(lon, lat, radius, angle) + [alt]
+      great_circle_coords(lon, lat, radius, angle) + [alt]
     end
+  end
+
+  # Finds the great circle distance between two [lon, lat] points
+  def self.great_circle_distance(start, finish)
+    start_lat = deg2rad(start[1])
+    start_lon = deg2rad(start[0])
+    finish_lat = deg2rad(finish[1])
+    finish_lon = deg2rad(finish[0])
+    
+    dlon = finish_lon - start_lon
+    dlat = finish_lat - start_lat
+
+    a = sin(dlat/2.0)**2 + cos(start_lat) * cos(finish_lat) * sin(dlon/2.0)**2
+    c = 2.0*asin([1,sqrt(a)].min)
+    
+    EARTH_RADIUS * c
   end
 
   # Calculates the [lon, lat] of a point at great circle @distance@ meters
   # from [@lon@, @lat@] at heading @angle@ (degrees).
-  def self.haversine(lon, lat, distance, angle)
+  def self.great_circle_coords(lon, lat, distance, angle)
     # d is the great circle distance in radians
     d = distance/EARTH_RADIUS
 

@@ -107,7 +107,7 @@ class DataPoint < ActiveRecord::Base
     gps_thread.join
   
     combined_data = data_points_hash.merge(gps_hash) do |k, dp, coord|
-      dp + [coord[1], coord[2], coord[3]]
+      [k] + cdr(dp) + [coord[1], coord[2], coord[3]]
     end.values.select do |elem|
       elem.size == 10
     end

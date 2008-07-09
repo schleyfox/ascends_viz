@@ -1,5 +1,3 @@
-require 'benchmark'
-
 desc "Plot columns of CO2"
 task :plot_flightpath_with_co2_columns do
   output_path = ENV["OUTPUT_PATH"] || "#{GTRON_ROOT}/output"
@@ -12,39 +10,33 @@ task :plot_flightpath_with_co2_columns do
   dps = DataPoint.find(:all)
   
   heading = 0
+  distance = 0
   column_coords = []
   #assemble datapoint tuples as [Column Pair coordinates, CO2 measure]
   dps.each_with_index do |dp, i|
-    if dp.itt_co2
+    if dp.itt_co2 
       if i < (dps.size-1)
-        heading = KmlTools.heading([dp.lon, dp.lat], 
-                                   [dps[i+1].lon, dps[i+1].lat])
+        start = [dp.lon, dp.lat]
+        finish = [dps[i+1].lon, dps[i+1].lat]
+
+        distance = KmlTools.great_circle_distance(start, finish)
+        heading = KmlTools.heading(start, finish)
       end
       column_coords << [KmlTools.column_pair(dp.lon, dp.lat, dp.altitude,
                                               heading, 150), dp.itt_co2]
+      if distance > 200
+        column_coords << nil
+      end
     end
   end
 	
-  # PPM Tolerance: 5%
-  ppm_tolerance = 0.05
 
-  #create polygons from computed coordinates.
-  to_skip = [] # Because I don't feel like thinking of a better way to do this
   column_coords.each_with_index do |c, i|
-    if i < column_coords.size-1 and !to_skip.include?(i)
+    if i < column_coords.size-1 and c and column_coords[i+1] 
       sty = KML::Style.new(:poly_style => KML::PolyStyle.new(
         :color => Co2ColorCode.colorify(c[1]), :outline => false))
 
-      to_skip << i+1 
-      tolerance = { :up => c[1] * (1+ppm_tolerance), :down => c[1] * (1-ppm_tolerance) }
-      # Fuck line character limits
-      if(tolerance[:up] > column_coords[i+1][1] and tolerance[:down] < column_coords[i+1][1] and i < column_coords.size-2)
-            coords = c[0].reverse + column_coords[i+2][0] + [c[0][1]]
-      else
-      # Because Andy is an idiot:
-      #puts "First: "+c[0].reverse.join(", ") + "Second: " + column_coords[i+1][0].join(", ") + "Third: " + [c[0][1]].join(", ")
-            coords = c[0].reverse + column_coords[i+1][0] + [c[0][1]]
-      end
+      coords = c[0].reverse + column_coords[i+1][0] + [c[0][1]]
 
       col = KML::Polygon.new( :outer_boundary_is => 
                              KML::LinearRing.new(:coordinates => coords),
