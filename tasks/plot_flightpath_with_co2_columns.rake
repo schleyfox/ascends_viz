@@ -20,10 +20,12 @@ task :plot_flightpath_with_co2_columns do
         finish = [dps[i+1].lon, dps[i+1].lat]
 
         distance = KmlTools.great_circle_distance(start, finish)
-        heading = KmlTools.heading(start, finish)
+        new_heading = KmlTools.heading(start, finish)
+        #angle difference formula
+        heading = new_heading unless ((((new_heading+180) - heading) % 360) - 180).abs > 90.0
       end
       column_coords << [KmlTools.column_pair(dp.lon, dp.lat, dp.altitude,
-                                              heading, 150), dp.itt_co2]
+                                              heading, 150), dp.itt_co2, heading]
       if distance > 200
         column_coords << nil
       end
@@ -42,7 +44,7 @@ task :plot_flightpath_with_co2_columns do
                              KML::LinearRing.new(:coordinates => coords),
                             :altitude_mode => 'absolute',
                             :extrude => true)
-      placemark = KML::Placemark.new( :name => c[1] )
+      placemark = KML::Placemark.new( :name => c[2] )
       placemark.features << sty << col
       doc.features << placemark
     end

@@ -139,6 +139,8 @@ class KmlTools
   # Calculates the heading angle between two points. Useful for pirates.
   #
   # @start@ and @finish@ are coordinate pairs in [lon, lat] format
+  #
+  # returns nil if start and finish are too close for accuracy
   def self.heading(start, finish)
     start_lat = start[1]
     start_lon = start[0]
@@ -177,7 +179,7 @@ class KmlTools
     c_big_deg = 360.0 - rad2deg(c_big)
     
     #this should make everything happy, but check
-    return c_big_deg
+    return c_big_deg % 360.0
   end
 
   private
