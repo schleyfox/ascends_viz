@@ -3,7 +3,7 @@ require 'lib/ruby-processing'
 # global variables for the benefit of Processing
 # lower and upper bounds for recorded CO2 
 $co2_low_bound = 0.0
-$co2_high_bound = 1.0
+$co2_high_bound = 0.2 
 
 # Co2ColorCode implements the color scale used to render columns of
 # CO2 in Google Earth.  
@@ -26,16 +26,31 @@ class Co2ColorCode
         normalize($co2_low_bound, $co2_high_bound, v)
       )
       
-      abgr(255 ,255*c[2], 255*c[1], 255*c[0])
+      abgr(255 ,c[2], c[1], c[0])
     end
   end
 
   # Returns the color for the associated normalized value
   # 
   # Return format is [red, green, blue] where all components are in range
-  # [0.0, 1.0]
-  def self.normalized_colorify(norm_value)
-    hsv((norm_value*300) +60, 0.75, 0.75)
+  # [0, 255]
+  def self.normalized_colorify(v)
+    case v
+    when (0...(1.0/27.0))
+      [255,255,255]
+    when ((1.0/27.0)...(6.0/27.0))
+      [-918.0*v + 289, -783*v + 169, 255]
+    when ((6.0/27.0)...(11.0/27.0))
+      [-1215.0*v + 448, -1377.0*v + 561 ,255]
+    when ((11.0/27.0)...(16.0/27.0))
+      [-1296.0*v + 719, 255, -1296.0*v + 719]
+    when ((16.0/27.0)...(22.0/27.0))
+      [255, -1296.0*v + 1023, 0]
+    when ((22.0/27.0)...(26.0/27.0))
+      [-1026.0*v + 1052, 0, 432.0*v - 337]
+    else
+      [0,0,0]
+    end
   end
 
   # Writes a PNG of the color scale to disk using Processing.  This image can
@@ -110,8 +125,7 @@ class Co2ColorCodeBar < Processing::App
     for i in (0...height)
       value = (1.0/height)*i
 
-      #transform colors on range [0.0, 1.0] to colors on range [0, 255]
-      colors = Co2ColorCode.normalized_colorify(value).map{|v| (255*v).to_i }
+      colors = Co2ColorCode.normalized_colorify(value)
 
       stroke(colors[0], colors[1], colors[2])
       line(25,i,width,i)
@@ -120,8 +134,8 @@ class Co2ColorCodeBar < Processing::App
       orig_val = Co2ColorCode.lerp($co2_low_bound, $co2_high_bound, value) #.to_i
       
       # label significant points on the bar with values
-      if ((orig_val*100).to_i % 10 == 0) && (orig_val*100).to_i != last_line_number
-        last_line_number = (orig_val*100).to_i
+      if ((orig_val*1000).to_i % 10 == 0) && (orig_val*1000).to_i != last_line_number
+        last_line_number = (orig_val*1000).to_i
         text("#{orig_val}", 2, i+12)
       end
     end
