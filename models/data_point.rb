@@ -43,7 +43,7 @@ class DataPoint < ActiveRecord::Base
     data_points
   end
 
-  def self.from_itt_data(dir_name)
+  def self.from_itt_data(dir_name, timezone_offset=-5)
     files = Dir.glob("#{dir_name}/itt/*.dbl")
   
     gps_file = Dir.glob("#{dir_name}/itt/*in-situ_gps_serial_data.txt").first
@@ -53,7 +53,7 @@ class DataPoint < ActiveRecord::Base
     data_points = []
     data_points_hash = {}
     file_thread = Thread.new do
-
+    timezone_offset += 1
       files.each do |file|
         n = (File.size(file)/(9.0*8.0)).floor
     
@@ -61,7 +61,9 @@ class DataPoint < ActiveRecord::Base
           offset = 9*8*i #bytes
           dat = IO.read(file, 9*8, offset).unpack(DataFormats::CO2)
           #for some reason the dates are correct, only in the wrong year, 2073
-          data_points << [dat[0].floor.to_i - 66.years - 12.hours] + dat[1,3] + dat[5,3] 
+          #Don't have any idea why adding one to the offset works, but it does
+          #Also my fucking system clock is set in UTC so Ruby can't see my true offset (easily at least) so it's hardcoded
+          data_points << [Time.at(dat[0].floor.to_i - (Time.utc(1970)-Time.utc(1904))+timezone_offset.hours)] + dat[1,3] + dat[5,3] 
         end
       end
     
@@ -73,7 +75,6 @@ class DataPoint < ActiveRecord::Base
       end
 
     end
-  
     gps_hash = {}
     gps_thread = Thread.new do
 
