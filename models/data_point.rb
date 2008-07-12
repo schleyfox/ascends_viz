@@ -53,7 +53,7 @@ class DataPoint < ActiveRecord::Base
     data_points = []
     data_points_hash = {}
     file_thread = Thread.new do
-    timezone_offset += 1
+    #timezone_offset += 1
       files.each do |file|
         n = (File.size(file)/(9.0*8.0)).floor
     
@@ -63,7 +63,8 @@ class DataPoint < ActiveRecord::Base
           #for some reason the dates are correct, only in the wrong year, 2073
           #Don't have any idea why adding one to the offset works, but it does
           #Also my fucking system clock is set in UTC so Ruby can't see my true offset (easily at least) so it's hardcoded
-          data_points << [Time.at(dat[0].floor.to_i - (Time.utc(1970)-Time.utc(1904))+timezone_offset.hours)] + dat[1,3] + dat[5,3] 
+          puts Time.at(dat[0].floor.to_i - (Time.utc(1970)-Time.utc(1904))+timezone_offset.hours+((Time.now).gmt_offset*-1))
+          data_points << [Time.at(dat[0].floor.to_i - (Time.utc(1970)-Time.utc(1904))+timezone_offset.hours+((Time.now).gmt_offset*-1))] + dat[1,3] + dat[5,3] 
         end
       end
     

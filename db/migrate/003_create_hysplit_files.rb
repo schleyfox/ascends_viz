@@ -3,6 +3,8 @@ class CreateHysplitFiles < ActiveRecord::Migration
     create_table :hysplit_files do |t|
       t.string :path
       t.string :file_name
+      t.string :month
+      t.integer :year
     end
   end
 

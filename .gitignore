@@ -1,7 +1,11 @@
 input/*
 output/*
+hysplit_dump/*
 log/*
 db/*.sqlite3
 *.swp
 database.yml
 doc/*
+CONTROL
+MESSAGE
+*.CFG
