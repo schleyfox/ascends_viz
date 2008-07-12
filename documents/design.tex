@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+
+\usepackage{palatino}
+\usepackage{amsmath}
+
+% Idiopidae
+\usepackage{fancybox}
+\usepackage[]{geometry}
+\usepackage{fancyvrb}
+\usepackage{color}
+\include{styles/emacs}
+\include{commands}
+
+\begin{document}
+\author{Benjamin S. Hughes}
+\title{Confessions of the ASCENDS Data Visualization Team}
+\maketitle
+
+This document attempts to justify and explain the methods to our madness.  In this tome, the structure and interpretation of the data we have been given shall be divined and documented.  The mathematical incantations will be demystified.  Basically, this document will change your life.
+
+\section*{Data}
+
+The data we received came in two categories: insitu and ITT.  The insitu data are the mixing ratio (in ppm) as recorded at the altitude of the airplane. The ITT data are the value of the backscatter of a laser that is absorbed by CO$_2$. This value can then be used to calculate the number density of CO$_2$ in the column of air below the laser.  The ITT data are the primary focus of the experiment.
+
+The data are organized into flights (which makes sense because that is how the data are gathered).  Flights are named as \texttt{\%m\%d\%y\_flightN/} where \texttt{N} is the flight number.  In the original file structure there are the folders \texttt{insitu/\%m\%d\%y\_flightN/} and \texttt{itt/\%m\%d\%y\_flightN/}; for processing, we change the directory structure to \texttt{\%m\%d\%y\_flightN/insitu/} and \texttt{\%m\%d\%y\_flightN/itt/}.
+
+\subsection*{Insitu}
+
+The insitu data are in CSV files.  Other than the timestamps being essentially nonsensical, it is pretty simple to parse and deal with.  However, the complete non-agreement with all other data is unsettling, but that seems to be a symptom of the early stage of development of this project.
+
+\subsection*{ITT}
+
+The ITT data are spread over a variety of files and formats.  The two that are of interest are the files that contain the CO$_2$ readings which match the pattern \texttt{*.dbl} and the GPS information which is contained in the file \texttt{*in-situ\_gps\_serial \_data.txt}.
+
+The CO$_2$ readings are stored as a binary file of 8-byte floating point values (doubles) in little endian form.  The first value is the number of seconds since January 1, 1904 00:00 GMT \footnote{Yes, it is different from the UNIX epoch of 1970-01-01 00:00 GMT, conversion code is necessary}. Measurements are taken at 5Hz. The format is given in the table:
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline 
+Time & Ref\_On & Ref\_Side & Ref\_Off & Blank & Sci\_On & Sci\_Side & Sci\_Off & Blank \\
+\hline
+\end{tabular}
+\end{center}
+
+The GPS positions are in a CSV file.  The timestamp is the first two elements on a line and is in the form \texttt{\%m/\%d/\%Y \%H:\%M:\%S}.  The longitude and latitude are stored in elements nine through twelve.  They are stored as hemisphere character and then an integer.  \texttt{DataPoint::make\_lat\_lon} converts them to floating points by inserting the decimal point after the second number and then multiplies by $-1$ if the hemisphere is ``S'' or ``W''. The longitude value seems to have an extraneous 0 prepended that is removed during processing.
+
+During the import phase, all values are combined and averaged for each second.  This allows the GPS and CO$_2$ data to be merged easily.
+
+\section*{Visualizations}
+
+\subsection*{Geographic Geometry}
+
+The visualizations work because of maths.  Maths is the study of numbers.  The earth is a sphere\footnote{No, it actually isn't, but in our world it is}.  For these visualizations, we use spherical trigonometry to find latitude and longitude coordinates.  We have encapsulated many common operations into \texttt{KmlTools}.
+
+Often it is necessary to find the heading (clockwise angle originating from North) between two points.  This can be found with the following process.
+
+\begin{equation}
+\begin{aligned}
+A &=\Delta \lambda \\
+c &=90^\circ - \phi_2 \\
+b &=90^\circ - \phi_1 \\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+a = \arccos{(\cos{b}\cos{c} + \sin{b}\sin{c}\cos{A})}
+\end{equation}
+
+\begin{equation}
+C =\arcsin{\left( \frac{\sin{A}\sin{c}}{\sin{a}} \right)}
+\end{equation}
+
+\begin{equation}
+B = 180^\circ - (A + C)
+\end{equation}
+
+\begin{equation}
+h(x) = \begin{cases}
+  360^\circ - C, & \phi_1<\phi_2 \\
+  180^\circ - C, & \phi_1>\phi_2 \\
+\end{cases}
+\end{equation}
+  
+\end{document}
