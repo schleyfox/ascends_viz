@@ -70,7 +70,7 @@ class DataPoint < ActiveRecord::Base
     
       avg_data_points = average_to_second(data_points)
 
-      puts Time.at(car(car(avg_data_points)))
+      puts car(car(avg_data_points))
 
       data_points_hash = avg_data_points.inject({}) do |h, i|
         h[car(i)] = i
@@ -87,12 +87,13 @@ class DataPoint < ActiveRecord::Base
         if required_attributes.all? {|i| !d[i].blank? && !d[i].include?('_') }
           timestamp = "#{d[0]} #{d[1]}"
           t = DateTime.strptime(timestamp, "%m/%d/%Y %H:%M:%S") 
-          time = Time.mktime(t.year, t.month, t.day, t.hour, t.min, t.sec)
+          time = Time.gm(t.year, t.month, t.day, t.hour, t.min, t.sec).to_i
+          time += 5*60*60 #adjust to EDT
     
           lat = make_lat_lon(d[8], d[9])
           lon = make_lat_lon(d[10], cdr(d[11]))
           alt = d[15].to_i
-          [time.to_i, lat, lon, alt]
+          [time, lat, lon, alt]
         else
           nil
         end
