@@ -3,7 +3,7 @@ require 'lib/ruby-processing'
 # global variables for the benefit of Processing
 # lower and upper bounds for recorded CO2 
 $co2_low_bound = 0.0
-$co2_high_bound = 0.2 
+$co2_high_bound = 0.15 
 
 # Co2ColorCode implements the color scale used to render columns of
 # CO2 in Google Earth.  

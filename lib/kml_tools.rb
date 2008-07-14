@@ -156,7 +156,12 @@ class KmlTools
     b = deg2rad(90.0-start_lat)
     
     #cosine rule
-    a = acos((cos(b) * cos(c)) + ((sin(b) * sin(c)) * cos(a_big)))
+    a = 0.0
+    begin
+      a = acos((cos(b) * cos(c)) + ((sin(b) * sin(c)) * cos(a_big)))
+    rescue
+      a = 1.0
+    end
     
     #sine rule
     c_big = 0.0
@@ -221,7 +226,7 @@ class KmlTools
       face_coords = []
       face_coords << [val] << coords[i+1] << higher_coords[i+1] << higher_coords[i] << [val]
       next if face_coords.index(nil)
-      mult_geom.features << KML::Style.new(:poly_style => KML::PolyStyle.new(:color => color, :outline => true)) if i==0
+      placemark.features << KML::Style.new(:poly_style => KML::PolyStyle.new(:color => color, :outline => false)) if i==0
       col = KML::Polygon.new( :outer_boundary_is => KML::LinearRing.new(:coordinates => face_coords),
 	  		      :altitude_mode => 'relativeToGround', :extrude=>false )
       mult_geom.features << col unless col.nil?
