@@ -70,7 +70,7 @@ class DataPoint < ActiveRecord::Base
     
       avg_data_points = average_to_second(data_points)
 
-      puts Time.at(car(car(avg_data_points)))
+      puts car(car(avg_data_points))
 
       data_points_hash = avg_data_points.inject({}) do |h, i|
         h[car(i)] = i
