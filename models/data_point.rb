@@ -121,7 +121,7 @@ class DataPoint < ActiveRecord::Base
   end
 
   def self.make_lat_lon(hemi, theta)
-    angle = (theta[0,2] + '.' + theta[2...theta.size]).to_f
+    angle = (theta[0,2].to_i + (theta[2,2].to_i + theta[4...theta.size].to_i/1000.0)/60.0).to_f
     if ["S", "W"].include? hemi
       angle *= -1.0
     end
