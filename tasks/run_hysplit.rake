@@ -1,6 +1,6 @@
 desc "The name says it."
 task :run_hysplit do
-  run_time = -72 #how long you want the model to run for
+  run_time = 72 #how long you want the model to run for
   
   get_db_conn(GTRON_ENV)
   
@@ -8,7 +8,7 @@ task :run_hysplit do
   data = DataPoint.find(:all)
   
   data.each do |test|
-    if (test.time % 60 == 0)
+    if (test.time % 120 == 0)
       control = File.open("./CONTROL", "w")
       start_time = Time.at(test.time)
       control << start_time.year.to_s + " " + start_time.month.to_s + " " + start_time.day.to_s + " " + start_time.hour.to_s + "\n"
