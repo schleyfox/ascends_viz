@@ -32,7 +32,6 @@ task :plot_flightpath_with_co2_columns do
     end
   end
 	
-
   column_coords.each_with_index do |c, i|
     if i < column_coords.size-1 and c and column_coords[i+1] 
       sty = KML::Style.new(:poly_style => KML::PolyStyle.new(
@@ -46,9 +45,10 @@ task :plot_flightpath_with_co2_columns do
                             :extrude => true)
       placemark = KML::Placemark.new( :name => c[2] )
       placemark.features << sty << col
-      doc.features << placemark
+      doc.features << placemark << KmlTools.cube(coords, 50, Co2ColorCode.colorify(c[1]), KmlTools.DEFAULT_BOX)
     end
   end
   kml.objects << doc
+  #puts kml.objects[0].features
   File.open("#{output_path}/co2_columns.kml", "w") {|f| f.write kml.render}
 end

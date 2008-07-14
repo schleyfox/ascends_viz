@@ -1,6 +1,6 @@
 input/*
 output/*
-hysplit_dump/*
+hysplit_model_output/*
 log/*
 db/*.sqlite3
 *.swp

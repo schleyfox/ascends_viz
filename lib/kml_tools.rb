@@ -3,7 +3,6 @@
 # in meters
 EARTH_RADIUS = 6378137.0
 
-
 # This class contains routines to draw simple shapes and make geography
 # calculations in Google Earth. I have been playing with Processing lately,
 # so hopefully I can take away things from that and make GE a bit more fun.
@@ -199,5 +198,38 @@ class KmlTools
     KML::LinearRing.new(:coordinates => bounds)
   end
 
+  def self.DEFAULT_BOX
+    return  {:top => true, :bottom => false, :left => true, :right => true, :front => false,
+                :back => false}
+  end 
+
+  def self.END_BOX 
+    DEFAULT_BOX.merge({:front => true, :back => true}) 
+  end
+
+  # Coords should be an array of tuples such that it contains 5 instances of [lat,lon,alt]
+  # Options takes draw hash specifying which faces to draw
+  def self.cube(coords, height, color, options={})
+    options = { :draw => {:top => true, :bottom => true, :left => true, :right => true, :front => true, :back => true}}.merge(options)
+    higher_coords = coords.map { |c| 
+      [c[0], c[1], c[2]+height]
+    } 
+    mult_geom = KML::MultiGeometry.new() 
+    placemark = KML::Placemark.new( :name => color )
+    coords.each_with_index do |val, i|
+      next unless i+1 < coords.length and i+1 < higher_coords.length
+      face_coords = []
+      face_coords << [val] << coords[i+1] << higher_coords[i+1] << higher_coords[i] << [val]
+      next if face_coords.index(nil)
+      mult_geom.features << KML::Style.new(:poly_style => KML::PolyStyle.new(:color => color, :outline => true)) if i==0
+      col = KML::Polygon.new( :outer_boundary_is => KML::LinearRing.new(:coordinates => face_coords),
+	  		      :altitude_mode => 'relativeToGround', :extrude=>false )
+      mult_geom.features << col unless col.nil?
+    end
+    mult_geom.features << KML::Polygon.new(:outer_boundary_is => KML::LinearRing.new(:coordinates => coords), :altitude_mode => 'relativeToGround', :extrude => false) if options[:bottom]
+    mult_geom.features << KML::Polygon.new(:outer_boundary_is => KML::LinearRing.new(:coordinates => higher_coords), :altitude_mode => 'relativeToGround', :extrude => false) if options[:top]
+    placemark.geometry = mult_geom
+    return placemark
+  end
 end
 
