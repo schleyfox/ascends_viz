@@ -88,7 +88,7 @@ class DataPoint < ActiveRecord::Base
           timestamp = "#{d[0]} #{d[1]}"
           t = DateTime.strptime(timestamp, "%m/%d/%Y %H:%M:%S") 
           time = Time.gm(t.year, t.month, t.day, t.hour, t.min, t.sec).to_i
-          time += 5*60*60 #adjust to EDT
+          time += 4.hours.to_i
     
           lat = make_lat_lon(d[8], d[9])
           lon = make_lat_lon(d[10], cdr(d[11]))
@@ -100,6 +100,8 @@ class DataPoint < ActiveRecord::Base
       end.compact
     
       avg_gps = average_to_second(gps)
+
+      puts car(car(avg_gps))
     
       gps_hash = avg_gps.inject({}) do |h, i|
         h[car(i)] = i
