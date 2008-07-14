@@ -1,3 +1,5 @@
+EPOCH_FAIL = 2082844800 #seconds between 1904 and 1970
+
 class DataPoint < ActiveRecord::Base
   belongs_to :flight
 
@@ -60,16 +62,16 @@ class DataPoint < ActiveRecord::Base
         for i in (0...n)
           offset = 9*8*i #bytes
           dat = IO.read(file, 9*8, offset).unpack(DataFormats::CO2)
-          #for some reason the dates are correct, only in the wrong year, 2073
-          #Don't have any idea why adding one to the offset works, but it does
-          #Also my fucking system clock is set in UTC so Ruby can't see my true offset (easily at least) so it's hardcoded
-          puts Time.at(dat[0].floor.to_i - (Time.utc(1970)-Time.utc(1904))+timezone_offset.hours+((Time.now).gmt_offset*-1))
-          data_points << [Time.at(dat[0].floor.to_i - (Time.utc(1970)-Time.utc(1904))+timezone_offset.hours+((Time.now).gmt_offset*-1))] + dat[1,3] + dat[5,3] 
+
+          #adjust for epoch difference
+          data_points << [dat[0].floor.to_i - EPOCH_FAIL] + dat[1,3] + dat[5,3] 
         end
       end
     
       avg_data_points = average_to_second(data_points)
-    
+
+      puts Time.at(car(car(avg_data_points)))
+
       data_points_hash = avg_data_points.inject({}) do |h, i|
         h[car(i)] = i
         h
@@ -90,7 +92,7 @@ class DataPoint < ActiveRecord::Base
           lat = make_lat_lon(d[8], d[9])
           lon = make_lat_lon(d[10], cdr(d[11]))
           alt = d[15].to_i
-          [time, lat, lon, alt]
+          [time.to_i, lat, lon, alt]
         else
           nil
         end
@@ -135,7 +137,7 @@ class DataPoint < ActiveRecord::Base
           acc[i+1] ||= 0
           acc[i+1] += x
         end
-        [Time.at(acc[0])] + cdr(acc).map{|x| x/points.size}
+        [acc[0]] + cdr(acc).map{|x| x/points.size}
       end
     end.sort {|a,b| a[0] <=> b[0]}
   end
