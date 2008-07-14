@@ -9,3 +9,9 @@ doc/*
 CONTROL
 MESSAGE
 *.CFG
+documents/*.pdf
+documents/*.aux
+documents/styles/*.aux
+documents/*.log
+documents/*.dvi
+documents/design-final.tex
