@@ -3,7 +3,7 @@ task :run_hysplit do
   run_time = 72 #how long you want the model to run for
   
   get_db_conn(GTRON_ENV)
-  FileUtils.rm_r Dir.glob('./hysplit_model_output/*')
+  FileUtils.rm_r Dir.glob("#{GTRON_ROOT}/hysplit_model_output/*")
   
   data = DataPoint.find(:all)
   
@@ -20,7 +20,7 @@ task :run_hysplit do
       hysplit_files.each do |file|
         control << file.path.to_s + "\n" + file.file_name.to_s + "\n"
       end
-      control << "./hysplit_model_output/\n#{point.time}\n"
+      control << "#{GTRON_ROOT}/hysplit_model_output/\n#{point.time}\n"
       control.close
       `/hysplit4/exec/hymodelt`
     end

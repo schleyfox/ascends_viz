@@ -1,0 +1,1787 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+<Document>
+ <name>HYSPLIT Trajectory </name>
+ <open>1</open>
+  <Style id="traj1">
+    <LineStyle>
+      <color>ff0000ff</color>
+      <width>4</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>7f0000ff</color>
+    </PolyStyle>
+    <IconStyle>
+      <scale>1.0</scale>
+      <Icon>
+        <href>http://www.arl.noaa.gov/images/redball.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="traj2">
+    <LineStyle>
+      <color>ffff0000</color>
+      <width>4</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>7fff0000</color>
+    </PolyStyle>
+    <IconStyle>
+      <scale>1.0</scale>
+      <Icon>
+        <href>http://www.arl.noaa.gov/images/blueball.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="traj3">
+    <LineStyle>
+      <color>ff00ff00</color>
+      <width>4</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>7f00ff00</color>
+    </PolyStyle>
+    <IconStyle>
+      <scale>1.0</scale>
+      <Icon>
+        <href>http://www.arl.noaa.gov/images/greenball.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Placemark>
+      <name>Source Location</name>
+      <description><![CDATA[<pre>
+LAT: 36.4640 LON: -76.4650
+      </pre>]]>
+      </description>
+     <Style id="sorc">
+      <IconStyle>
+       <Icon>
+        <href>http://www.arl.noaa.gov/images/icon63.png</href>
+         <x>224</x>
+         <y>32</y>
+         <w>32</w>
+         <h>32</h>
+       </Icon>
+      </IconStyle>
+      <LineStyle>
+        <color>ffffffff</color>
+        <width>2</width>
+      </LineStyle>
+     </Style>
+     <Point>
+         <extrude>1</extrude>
+         <altitudeMode>ClampedToGround</altitudeMode>
+         <coordinates> -76.4650,36.4640,10</coordinates>
+      </Point>
+    </Placemark>
+    <ScreenOverlay>
+      <name>HYSPLIT Logo</name>
+      <Icon>
+        <href>logocon.gif</href>
+      </Icon>
+      <overlayXY x="1" y="1" xunits="fraction" yunits="fraction"/>
+      <screenXY x="1" y="1" xunits="fraction" yunits="fraction"/>
+      <rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+      <size x="0" y="0" xunits="pixels" yunits="pixels"/>
+    </ScreenOverlay>
+  <Folder>
+      <name>    651.0 m AGL Trajectory</name>
+    <open>1</open>
+    <Placemark>
+      <LookAt>
+        <longitude> -76.4650</longitude>
+        <latitude> 36.4640</latitude>
+        <range>2000000.0</range>
+        <tilt>0.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>    651.0 m AGL Trajectory</name>
+      <styleUrl>#traj1</styleUrl>
+   
+      <LineString>
+       <extrude>1</extrude>
+       <tessellate>1</tessellate>
+       <altitudeMode>relativeToGround</altitudeMode>
+       <coordinates>
+          -76.4650,36.4640,651.0
+          -76.2560,36.2830,677.0
+          -76.0730,36.1080,706.0
+          -75.8910,35.9650,729.0
+          -75.7080,35.8540,746.0
+          -75.5040,35.7620,761.0
+          -75.2580,35.6740,775.0
+          -74.9740,35.5840,792.0
+          -74.6590,35.4890,800.0
+          -74.3280,35.3730,787.0
+          -73.9840,35.2110,757.0
+          -73.6300,35.0420,725.0
+          -73.2800,34.8930,692.0
+          -72.9580,34.7230,645.0
+          -72.6610,34.5320,597.0
+          -72.3770,34.3300,560.0
+          -72.1210,34.0920,520.0
+          -71.8980,33.8260,482.0
+          -71.7090,33.5480,454.0
+          -71.5670,33.2380,433.0
+          -71.4710,32.9150,417.0
+          -71.4130,32.6150,405.0
+          -71.4000,32.3240,391.0
+          -71.4480,32.0280,375.0
+          -71.5640,31.7320,358.0
+          -71.7410,31.4330,338.0
+          -71.9640,31.1460,317.0
+          -72.2180,30.9010,299.0
+          -72.5010,30.7010,285.0
+          -72.7930,30.5400,276.0
+          -73.0760,30.4100,268.0
+          -73.3500,30.3110,262.0
+          -73.6180,30.2320,256.0
+          -73.8810,30.1620,250.0
+          -74.1350,30.0980,244.0
+          -74.3930,30.0320,237.0
+          -74.6710,29.9580,232.0
+          -74.9710,29.8750,226.0
+          -75.2810,29.7940,222.0
+          -75.5880,29.7230,220.0
+          -75.8950,29.6620,222.0
+          -76.1980,29.6180,224.0
+          -76.4960,29.5940,224.0
+          -76.7930,29.5900,222.0
+          -77.0890,29.6040,219.0
+          -77.3790,29.6350,217.0
+          -77.6560,29.6800,216.0
+          -77.9290,29.7320,213.0
+          -78.2120,29.7850,208.0
+          -78.5100,29.8470,202.0
+          -78.8130,29.9200,198.0
+          -79.1070,30.0040,197.0
+          -79.3900,30.0940,200.0
+          -79.6700,30.1860,205.0
+          -79.9600,30.2780,211.0
+          -80.2530,30.3690,220.0
+          -80.5360,30.4590,232.0
+          -80.8100,30.5520,244.0
+          -81.0810,30.6490,257.0
+          -81.3520,30.7570,270.0
+          -81.6340,30.8850,283.0
+          -81.9400,31.0330,295.0
+          -82.2460,31.2050,308.0
+          -82.5310,31.4060,320.0
+          -82.8060,31.6400,327.0
+          -83.0580,31.8990,333.0
+          -83.2590,32.1720,347.0
+          -83.4020,32.4620,370.0
+          -83.5000,32.7910,394.0
+          -83.5710,33.1690,417.0
+          -83.6150,33.5720,451.0
+          -83.6120,33.9760,499.0
+          -83.5190,34.4000,541.0
+       </coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+     <visibility>0</visibility>
+      <name>10/20/3907 1100 UTC</name>
+      <description><![CDATA[<pre>Start Time
+10/20/3907 1100 UTC
+LAT:   36.4640 LON:  -76.4650 Hght(m AGL):    651.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -76.4650,36.4640,651.0</coordinates>
+      </Point>
+    </Placemark>
+  <Folder>
+      <name>Trajectory Endpoints</name>
+           <visibility>0</visibility>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -76.2560</longitude>
+        <latitude> 36.2830</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 1200 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT   1. hour endpoint
+      
+10/20/1907 1200 UTC
+LAT:   36.2830 LON:  -76.2560 Hght(m AGL):    677.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -76.2560,36.2830,677.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -76.0730</longitude>
+        <latitude> 36.1080</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 1300 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT   2. hour endpoint
+      
+10/20/1907 1300 UTC
+LAT:   36.1080 LON:  -76.0730 Hght(m AGL):    706.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -76.0730,36.1080,706.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -75.8910</longitude>
+        <latitude> 35.9650</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 1400 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT   3. hour endpoint
+      
+10/20/1907 1400 UTC
+LAT:   35.9650 LON:  -75.8910 Hght(m AGL):    729.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -75.8910,35.9650,729.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -75.7080</longitude>
+        <latitude> 35.8540</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 1500 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT   4. hour endpoint
+      
+10/20/1907 1500 UTC
+LAT:   35.8540 LON:  -75.7080 Hght(m AGL):    746.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -75.7080,35.8540,746.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -75.5040</longitude>
+        <latitude> 35.7620</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 1600 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT   5. hour endpoint
+      
+10/20/1907 1600 UTC
+LAT:   35.7620 LON:  -75.5040 Hght(m AGL):    761.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -75.5040,35.7620,761.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -75.2580</longitude>
+        <latitude> 35.6740</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 1700 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT   6. hour endpoint
+      
+10/20/1907 1700 UTC
+LAT:   35.6740 LON:  -75.2580 Hght(m AGL):    775.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -75.2580,35.6740,775.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -74.9740</longitude>
+        <latitude> 35.5840</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 1800 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT   7. hour endpoint
+      
+10/20/1907 1800 UTC
+LAT:   35.5840 LON:  -74.9740 Hght(m AGL):    792.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -74.9740,35.5840,792.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -74.6590</longitude>
+        <latitude> 35.4890</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 1900 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT   8. hour endpoint
+      
+10/20/1907 1900 UTC
+LAT:   35.4890 LON:  -74.6590 Hght(m AGL):    800.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -74.6590,35.4890,800.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -74.3280</longitude>
+        <latitude> 35.3730</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 2000 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT   9. hour endpoint
+      
+10/20/1907 2000 UTC
+LAT:   35.3730 LON:  -74.3280 Hght(m AGL):    787.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -74.3280,35.3730,787.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -73.9840</longitude>
+        <latitude> 35.2110</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 2100 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  10. hour endpoint
+      
+10/20/1907 2100 UTC
+LAT:   35.2110 LON:  -73.9840 Hght(m AGL):    757.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -73.9840,35.2110,757.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -73.6300</longitude>
+        <latitude> 35.0420</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 2200 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  11. hour endpoint
+      
+10/20/1907 2200 UTC
+LAT:   35.0420 LON:  -73.6300 Hght(m AGL):    725.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -73.6300,35.0420,725.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -73.2800</longitude>
+        <latitude> 34.8930</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/20/1907 2300 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  12. hour endpoint
+      
+10/20/1907 2300 UTC
+LAT:   34.8930 LON:  -73.2800 Hght(m AGL):    692.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -73.2800,34.8930,692.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -72.9580</longitude>
+        <latitude> 34.7230</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0000 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  13. hour endpoint
+      
+10/21/1907 0000 UTC
+LAT:   34.7230 LON:  -72.9580 Hght(m AGL):    645.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -72.9580,34.7230,645.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -72.6610</longitude>
+        <latitude> 34.5320</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0100 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  14. hour endpoint
+      
+10/21/1907 0100 UTC
+LAT:   34.5320 LON:  -72.6610 Hght(m AGL):    597.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -72.6610,34.5320,597.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -72.3770</longitude>
+        <latitude> 34.3300</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0200 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  15. hour endpoint
+      
+10/21/1907 0200 UTC
+LAT:   34.3300 LON:  -72.3770 Hght(m AGL):    560.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -72.3770,34.3300,560.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -72.1210</longitude>
+        <latitude> 34.0920</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0300 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  16. hour endpoint
+      
+10/21/1907 0300 UTC
+LAT:   34.0920 LON:  -72.1210 Hght(m AGL):    520.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -72.1210,34.0920,520.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.8980</longitude>
+        <latitude> 33.8260</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0400 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  17. hour endpoint
+      
+10/21/1907 0400 UTC
+LAT:   33.8260 LON:  -71.8980 Hght(m AGL):    482.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.8980,33.8260,482.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.7090</longitude>
+        <latitude> 33.5480</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0500 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  18. hour endpoint
+      
+10/21/1907 0500 UTC
+LAT:   33.5480 LON:  -71.7090 Hght(m AGL):    454.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.7090,33.5480,454.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.5670</longitude>
+        <latitude> 33.2380</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0600 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  19. hour endpoint
+      
+10/21/1907 0600 UTC
+LAT:   33.2380 LON:  -71.5670 Hght(m AGL):    433.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.5670,33.2380,433.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.4710</longitude>
+        <latitude> 32.9150</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0700 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  20. hour endpoint
+      
+10/21/1907 0700 UTC
+LAT:   32.9150 LON:  -71.4710 Hght(m AGL):    417.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.4710,32.9150,417.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.4130</longitude>
+        <latitude> 32.6150</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0800 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  21. hour endpoint
+      
+10/21/1907 0800 UTC
+LAT:   32.6150 LON:  -71.4130 Hght(m AGL):    405.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.4130,32.6150,405.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.4000</longitude>
+        <latitude> 32.3240</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 0900 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  22. hour endpoint
+      
+10/21/1907 0900 UTC
+LAT:   32.3240 LON:  -71.4000 Hght(m AGL):    391.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.4000,32.3240,391.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.4480</longitude>
+        <latitude> 32.0280</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1000 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  23. hour endpoint
+      
+10/21/1907 1000 UTC
+LAT:   32.0280 LON:  -71.4480 Hght(m AGL):    375.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.4480,32.0280,375.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.5640</longitude>
+        <latitude> 31.7320</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1100 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  24. hour endpoint
+      
+10/21/1907 1100 UTC
+LAT:   31.7320 LON:  -71.5640 Hght(m AGL):    358.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.5640,31.7320,358.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.7410</longitude>
+        <latitude> 31.4330</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1200 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  25. hour endpoint
+      
+10/21/1907 1200 UTC
+LAT:   31.4330 LON:  -71.7410 Hght(m AGL):    338.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.7410,31.4330,338.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -71.9640</longitude>
+        <latitude> 31.1460</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1300 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  26. hour endpoint
+      
+10/21/1907 1300 UTC
+LAT:   31.1460 LON:  -71.9640 Hght(m AGL):    317.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -71.9640,31.1460,317.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -72.2180</longitude>
+        <latitude> 30.9010</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1400 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  27. hour endpoint
+      
+10/21/1907 1400 UTC
+LAT:   30.9010 LON:  -72.2180 Hght(m AGL):    299.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -72.2180,30.9010,299.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -72.5010</longitude>
+        <latitude> 30.7010</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1500 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  28. hour endpoint
+      
+10/21/1907 1500 UTC
+LAT:   30.7010 LON:  -72.5010 Hght(m AGL):    285.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -72.5010,30.7010,285.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -72.7930</longitude>
+        <latitude> 30.5400</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1600 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  29. hour endpoint
+      
+10/21/1907 1600 UTC
+LAT:   30.5400 LON:  -72.7930 Hght(m AGL):    276.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -72.7930,30.5400,276.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -73.0760</longitude>
+        <latitude> 30.4100</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1700 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  30. hour endpoint
+      
+10/21/1907 1700 UTC
+LAT:   30.4100 LON:  -73.0760 Hght(m AGL):    268.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -73.0760,30.4100,268.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -73.3500</longitude>
+        <latitude> 30.3110</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1800 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  31. hour endpoint
+      
+10/21/1907 1800 UTC
+LAT:   30.3110 LON:  -73.3500 Hght(m AGL):    262.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -73.3500,30.3110,262.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -73.6180</longitude>
+        <latitude> 30.2320</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 1900 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  32. hour endpoint
+      
+10/21/1907 1900 UTC
+LAT:   30.2320 LON:  -73.6180 Hght(m AGL):    256.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -73.6180,30.2320,256.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -73.8810</longitude>
+        <latitude> 30.1620</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 2000 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  33. hour endpoint
+      
+10/21/1907 2000 UTC
+LAT:   30.1620 LON:  -73.8810 Hght(m AGL):    250.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -73.8810,30.1620,250.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -74.1350</longitude>
+        <latitude> 30.0980</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 2100 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  34. hour endpoint
+      
+10/21/1907 2100 UTC
+LAT:   30.0980 LON:  -74.1350 Hght(m AGL):    244.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -74.1350,30.0980,244.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -74.3930</longitude>
+        <latitude> 30.0320</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 2200 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  35. hour endpoint
+      
+10/21/1907 2200 UTC
+LAT:   30.0320 LON:  -74.3930 Hght(m AGL):    237.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -74.3930,30.0320,237.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -74.6710</longitude>
+        <latitude> 29.9580</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/21/1907 2300 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  36. hour endpoint
+      
+10/21/1907 2300 UTC
+LAT:   29.9580 LON:  -74.6710 Hght(m AGL):    232.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -74.6710,29.9580,232.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -74.9710</longitude>
+        <latitude> 29.8750</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0000 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  37. hour endpoint
+      
+10/22/1907 0000 UTC
+LAT:   29.8750 LON:  -74.9710 Hght(m AGL):    226.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -74.9710,29.8750,226.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -75.2810</longitude>
+        <latitude> 29.7940</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0100 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  38. hour endpoint
+      
+10/22/1907 0100 UTC
+LAT:   29.7940 LON:  -75.2810 Hght(m AGL):    222.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -75.2810,29.7940,222.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -75.5880</longitude>
+        <latitude> 29.7230</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0200 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  39. hour endpoint
+      
+10/22/1907 0200 UTC
+LAT:   29.7230 LON:  -75.5880 Hght(m AGL):    220.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -75.5880,29.7230,220.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -75.8950</longitude>
+        <latitude> 29.6620</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0300 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  40. hour endpoint
+      
+10/22/1907 0300 UTC
+LAT:   29.6620 LON:  -75.8950 Hght(m AGL):    222.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -75.8950,29.6620,222.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -76.1980</longitude>
+        <latitude> 29.6180</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0400 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  41. hour endpoint
+      
+10/22/1907 0400 UTC
+LAT:   29.6180 LON:  -76.1980 Hght(m AGL):    224.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -76.1980,29.6180,224.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -76.4960</longitude>
+        <latitude> 29.5940</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0500 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  42. hour endpoint
+      
+10/22/1907 0500 UTC
+LAT:   29.5940 LON:  -76.4960 Hght(m AGL):    224.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -76.4960,29.5940,224.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -76.7930</longitude>
+        <latitude> 29.5900</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0600 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  43. hour endpoint
+      
+10/22/1907 0600 UTC
+LAT:   29.5900 LON:  -76.7930 Hght(m AGL):    222.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -76.7930,29.5900,222.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -77.0890</longitude>
+        <latitude> 29.6040</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0700 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  44. hour endpoint
+      
+10/22/1907 0700 UTC
+LAT:   29.6040 LON:  -77.0890 Hght(m AGL):    219.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -77.0890,29.6040,219.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -77.3790</longitude>
+        <latitude> 29.6350</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0800 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  45. hour endpoint
+      
+10/22/1907 0800 UTC
+LAT:   29.6350 LON:  -77.3790 Hght(m AGL):    217.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -77.3790,29.6350,217.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -77.6560</longitude>
+        <latitude> 29.6800</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 0900 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  46. hour endpoint
+      
+10/22/1907 0900 UTC
+LAT:   29.6800 LON:  -77.6560 Hght(m AGL):    216.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -77.6560,29.6800,216.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -77.9290</longitude>
+        <latitude> 29.7320</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1000 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  47. hour endpoint
+      
+10/22/1907 1000 UTC
+LAT:   29.7320 LON:  -77.9290 Hght(m AGL):    213.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -77.9290,29.7320,213.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -78.2120</longitude>
+        <latitude> 29.7850</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1100 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  48. hour endpoint
+      
+10/22/1907 1100 UTC
+LAT:   29.7850 LON:  -78.2120 Hght(m AGL):    208.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -78.2120,29.7850,208.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -78.5100</longitude>
+        <latitude> 29.8470</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1200 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  49. hour endpoint
+      
+10/22/1907 1200 UTC
+LAT:   29.8470 LON:  -78.5100 Hght(m AGL):    202.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -78.5100,29.8470,202.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -78.8130</longitude>
+        <latitude> 29.9200</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1300 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  50. hour endpoint
+      
+10/22/1907 1300 UTC
+LAT:   29.9200 LON:  -78.8130 Hght(m AGL):    198.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -78.8130,29.9200,198.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -79.1070</longitude>
+        <latitude> 30.0040</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1400 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  51. hour endpoint
+      
+10/22/1907 1400 UTC
+LAT:   30.0040 LON:  -79.1070 Hght(m AGL):    197.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -79.1070,30.0040,197.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -79.3900</longitude>
+        <latitude> 30.0940</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1500 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  52. hour endpoint
+      
+10/22/1907 1500 UTC
+LAT:   30.0940 LON:  -79.3900 Hght(m AGL):    200.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -79.3900,30.0940,200.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -79.6700</longitude>
+        <latitude> 30.1860</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1600 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  53. hour endpoint
+      
+10/22/1907 1600 UTC
+LAT:   30.1860 LON:  -79.6700 Hght(m AGL):    205.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -79.6700,30.1860,205.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -79.9600</longitude>
+        <latitude> 30.2780</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1700 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  54. hour endpoint
+      
+10/22/1907 1700 UTC
+LAT:   30.2780 LON:  -79.9600 Hght(m AGL):    211.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -79.9600,30.2780,211.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -80.2530</longitude>
+        <latitude> 30.3690</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1800 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  55. hour endpoint
+      
+10/22/1907 1800 UTC
+LAT:   30.3690 LON:  -80.2530 Hght(m AGL):    220.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -80.2530,30.3690,220.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -80.5360</longitude>
+        <latitude> 30.4590</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 1900 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  56. hour endpoint
+      
+10/22/1907 1900 UTC
+LAT:   30.4590 LON:  -80.5360 Hght(m AGL):    232.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -80.5360,30.4590,232.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -80.8100</longitude>
+        <latitude> 30.5520</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 2000 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  57. hour endpoint
+      
+10/22/1907 2000 UTC
+LAT:   30.5520 LON:  -80.8100 Hght(m AGL):    244.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -80.8100,30.5520,244.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -81.0810</longitude>
+        <latitude> 30.6490</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 2100 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  58. hour endpoint
+      
+10/22/1907 2100 UTC
+LAT:   30.6490 LON:  -81.0810 Hght(m AGL):    257.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -81.0810,30.6490,257.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -81.3520</longitude>
+        <latitude> 30.7570</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 2200 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  59. hour endpoint
+      
+10/22/1907 2200 UTC
+LAT:   30.7570 LON:  -81.3520 Hght(m AGL):    270.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -81.3520,30.7570,270.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -81.6340</longitude>
+        <latitude> 30.8850</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/22/1907 2300 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  60. hour endpoint
+      
+10/22/1907 2300 UTC
+LAT:   30.8850 LON:  -81.6340 Hght(m AGL):    283.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -81.6340,30.8850,283.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -81.9400</longitude>
+        <latitude> 31.0330</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0000 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  61. hour endpoint
+      
+10/23/1907 0000 UTC
+LAT:   31.0330 LON:  -81.9400 Hght(m AGL):    295.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -81.9400,31.0330,295.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -82.2460</longitude>
+        <latitude> 31.2050</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0100 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  62. hour endpoint
+      
+10/23/1907 0100 UTC
+LAT:   31.2050 LON:  -82.2460 Hght(m AGL):    308.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -82.2460,31.2050,308.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -82.5310</longitude>
+        <latitude> 31.4060</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0200 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  63. hour endpoint
+      
+10/23/1907 0200 UTC
+LAT:   31.4060 LON:  -82.5310 Hght(m AGL):    320.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -82.5310,31.4060,320.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -82.8060</longitude>
+        <latitude> 31.6400</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0300 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  64. hour endpoint
+      
+10/23/1907 0300 UTC
+LAT:   31.6400 LON:  -82.8060 Hght(m AGL):    327.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -82.8060,31.6400,327.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -83.0580</longitude>
+        <latitude> 31.8990</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0400 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  65. hour endpoint
+      
+10/23/1907 0400 UTC
+LAT:   31.8990 LON:  -83.0580 Hght(m AGL):    333.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -83.0580,31.8990,333.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -83.2590</longitude>
+        <latitude> 32.1720</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0500 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  66. hour endpoint
+      
+10/23/1907 0500 UTC
+LAT:   32.1720 LON:  -83.2590 Hght(m AGL):    347.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -83.2590,32.1720,347.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -83.4020</longitude>
+        <latitude> 32.4620</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0600 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  67. hour endpoint
+      
+10/23/1907 0600 UTC
+LAT:   32.4620 LON:  -83.4020 Hght(m AGL):    370.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -83.4020,32.4620,370.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -83.5000</longitude>
+        <latitude> 32.7910</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0700 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  68. hour endpoint
+      
+10/23/1907 0700 UTC
+LAT:   32.7910 LON:  -83.5000 Hght(m AGL):    394.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -83.5000,32.7910,394.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -83.5710</longitude>
+        <latitude> 33.1690</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0800 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  69. hour endpoint
+      
+10/23/1907 0800 UTC
+LAT:   33.1690 LON:  -83.5710 Hght(m AGL):    417.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -83.5710,33.1690,417.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -83.6150</longitude>
+        <latitude> 33.5720</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 0900 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  70. hour endpoint
+      
+10/23/1907 0900 UTC
+LAT:   33.5720 LON:  -83.6150 Hght(m AGL):    451.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -83.6150,33.5720,451.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -83.6120</longitude>
+        <latitude> 33.9760</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 1000 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  71. hour endpoint
+      
+10/23/1907 1000 UTC
+LAT:   33.9760 LON:  -83.6120 Hght(m AGL):    499.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -83.6120,33.9760,499.0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+           <visibility>0</visibility>
+      <LookAt>
+        <longitude> -83.5190</longitude>
+        <latitude> 34.4000</latitude>
+        <range>20000.0</range>
+        <tilt>60.0</tilt>
+        <heading>0.0</heading>
+      </LookAt>
+      <name>10/23/1907 1100 UTC</name>
+      <description><![CDATA[<pre>HYSPLIT  72. hour endpoint
+      
+10/23/1907 1100 UTC
+LAT:   34.4000 LON:  -83.5190 Hght(m AGL):    541.0
+      </pre>]]>
+      </description>
+      <styleUrl>#traj1</styleUrl>
+      <Point>
+         <altitudeMode>relativeToGround</altitudeMode>
+         <coordinates> -83.5190,34.4000,541.0</coordinates>
+      </Point>
+    </Placemark>
+  </Folder>
+  </Folder>
+</Document>
+</kml>
