@@ -31,24 +31,33 @@ task :plot_flightpath_with_co2_columns do
       end
     end
   end
-	
+
+  box_tracker, column_tracker = [], []
+  max_merges = ENV['max_merges'] || 3
   column_coords.each_with_index do |c, i|
     if i < column_coords.size-1 and c and column_coords[i+1] 
       sty = KML::Style.new(:poly_style => KML::PolyStyle.new(
         :color => Co2ColorCode.colorify(c[1]), :outline => false))
 
       coords = c[0].reverse + column_coords[i+1][0] + [c[0][1]]
-
-      col = KML::Polygon.new( :outer_boundary_is => 
-                             KML::LinearRing.new(:coordinates => coords),
-                            :altitude_mode => 'absolute',
-                            :extrude => true)
+      cube_coords = coords
+      
+      (2..max_merges).each do |m|
+        if (within_tolerance?(0.05, c[1], column_coords[i+1][1]) && column_coords[i+m] && !box_tracker.include?(i))
+            cube_coords = c[0].reverse + column_coords[i+m][0] + [c[0][1]]
+            box_tracker << i+(m-1)
+        end
+      end
       placemark = KML::Placemark.new( :name => c[2] )
-      placemark.features << sty << col
-      doc.features << placemark << KmlTools.cube(coords, 50, Co2ColorCode.colorify(c[1]), KmlTools.DEFAULT_BOX)
+      if(!box_tracker.include?(i))
+        doc.features << KmlTools.cube(cube_coords, 50, Co2ColorCode.colorify(c[1]), KmlTools.DEFAULT_BOX)
+        col = KML::Polygon.new( :outer_boundary_is => KML::LinearRing.new(:coordinates => cube_coords),
+                                :altitude_mode => 'absolute', :extrude => true)
+        placemark.features << sty << col
+        doc.features << placemark
+      end
     end
   end
   kml.objects << doc
-  #puts kml.objects[0].features
   File.open("#{output_path}/co2_columns.kml", "w") {|f| f.write kml.render}
 end
