@@ -225,7 +225,7 @@ class KmlTools
       next unless i+1 < coords.length and i+1 < higher_coords.length
       face_coords ||= [] << [val] << coords[i+1] << higher_coords[i+1] << higher_coords[i] << [val]
       next if face_coords.index(nil)
-      placemark.features << KML::Style.new(:poly_style => KML::PolyStyle.new(:color => color, :outline => true)) if i==0
+      placemark.features << KML::Style.new(:poly_style => KML::PolyStyle.new(:color => color, :outline => false)) if i==0
       col = KML::Polygon.new( :outer_boundary_is => KML::LinearRing.new(:coordinates => face_coords),
 	  		      :altitude_mode => 'relativeToGround', :extrude=>false )
       mult_geom.features << col unless col.nil?

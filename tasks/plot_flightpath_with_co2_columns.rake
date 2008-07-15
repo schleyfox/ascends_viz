@@ -50,7 +50,7 @@ task :plot_flightpath_with_co2_columns do
       end
       placemark = KML::Placemark.new( :name => c[2] )
       if(!box_tracker.include?(i))
-        doc.features << KmlTools.cube(cube_coords, 50, Co2ColorCode.insitu_colorify(c[1]), KmlTools.DEFAULT_BOX)
+        doc.features << KmlTools.cube(cube_coords, 50, Co2ColorCode.insitu_colorify(c[2]), KmlTools.DEFAULT_BOX)
         col = KML::Polygon.new( :outer_boundary_is => KML::LinearRing.new(:coordinates => cube_coords),
                                 :altitude_mode => 'absolute', :extrude => true)
         placemark.features << sty << col
