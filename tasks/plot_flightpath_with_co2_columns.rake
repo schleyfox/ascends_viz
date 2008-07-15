@@ -25,7 +25,7 @@ task :plot_flightpath_with_co2_columns do
         heading = new_heading unless ((((new_heading+180) - heading) % 360) - 180).abs > 90.0
       end
       column_coords << [KmlTools.column_pair(dp.lon, dp.lat, dp.altitude,
-                                              heading, 150), dp.itt_co2, heading]
+                                              heading, 150), dp.itt_co2, dp.insitu_co2, heading]
       if distance > 200
         column_coords << nil
       end
@@ -35,7 +35,7 @@ task :plot_flightpath_with_co2_columns do
   column_coords.each_with_index do |c, i|
     if i < column_coords.size-1 and c and column_coords[i+1] 
       sty = KML::Style.new(:poly_style => KML::PolyStyle.new(
-        :color => Co2ColorCode.colorify(c[1]), :outline => false))
+        :color => Co2ColorCode.itt_colorify(c[1]), :outline => false))
 
       coords = c[0].reverse + column_coords[i+1][0] + [c[0][1]]
 
@@ -43,9 +43,9 @@ task :plot_flightpath_with_co2_columns do
                              KML::LinearRing.new(:coordinates => coords),
                             :altitude_mode => 'absolute',
                             :extrude => true)
-      placemark = KML::Placemark.new( :name => c[2] )
+      placemark = KML::Placemark.new( :name => c[1] )
       placemark.features << sty << col
-      doc.features << placemark << KmlTools.cube(coords, 50, Co2ColorCode.colorify(c[1]), KmlTools.DEFAULT_BOX)
+      doc.features << placemark << KmlTools.cube(coords, 50, Co2ColorCode.insitu_colorify(c[2]), KmlTools.DEFAULT_BOX)
     end
   end
   kml.objects << doc

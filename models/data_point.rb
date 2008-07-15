@@ -28,8 +28,12 @@ class DataPoint < ActiveRecord::Base
     co2 = cdr(File.read(Dir.glob("#{dir_name}/insitu/lear*.txt").first).split(/\r?\n/))
     co2.map! do |x| 
       l = x.split(/,\s+/)
-      [date.strftime("%s").to_i + l[1].to_i + 4.hours, l[2].to_f]
-    end
+      if l[2].to_f != -9999.99
+        [date.strftime("%s").to_i + l[1].to_i + 4.hours, l[2].to_f]
+      else
+        nil
+      end
+    end.compact!
     puts car(car(co2))
     co2
   end

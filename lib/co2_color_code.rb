@@ -17,7 +17,7 @@ class Co2ColorCode
   # Returns the color associated with @value@ of CO2
   #
   # Return format is #AABBGGRR in hexadecimal notation
-  def self.colorify(value)
+  def self.itt_colorify(value)
     v = value.to_f
     if v == -9999.99 # -9999.99 is the fill value for the dataset
       return abgr(0,0,0,0)
@@ -28,6 +28,15 @@ class Co2ColorCode
       
       abgr(255 ,c[2], c[1], c[0])
     end
+  end
+
+  def self.insitu_colorify(value)
+    v = value.to_f
+    c = normalized_colorify(
+      normalize(380, 450, v)
+    )
+
+    abgr(255, c[2], c[1], c[0])
   end
 
   # Returns the color for the associated normalized value
