@@ -46,6 +46,8 @@ The GPS positions are in a CSV file.  The timestamp is the first two elements on
 
 During the import phase, all values are combined and averaged for each second.  This allows the GPS and CO$_2$ data to be merged easily.
 
+ITT CO$_2$ data is taken from the side sensor and is stored as the ratio of Sci\_Side and Ref\_Side.  
+
 \section*{Visualizations}
 
 \subsection*{Geographic Geometry}
@@ -97,7 +99,7 @@ Going in the opposite direction, coordinates of the form ($\phi_2$,$\lambda_2$) 
 
 \begin{equation}
 \label{great-circle-coords-dlon}
-\Delta\lambda = \arctan\left(\frac{\sin(h)\sin d\cos\phi_1}{\cos d-\sin\phi_1\phi_2}\right)
+\Delta\lambda = \arctan\left(\frac{\sin(h)\sin d\cos\phi_1}{\cos d-\sin\phi_1\si\phi_2}\right)
 \end{equation}
 
 \begin{equation}
@@ -110,5 +112,5 @@ Equation (\ref{great-circle-coords-lat}) is derived from the spherical law of co
 \cos b =\cos c\cos a + \sin c\sin a\cos B
 \end{equation}
 
-where $a=\frac{\pi}{2}-\phi_1$, $b=\frac{\pi}{2}-\phi_2$, and $B=h$.  The derivation of Equation (\ref{great-circle-coords-dlon}) is much more involved and beyond the scope of this document.
+where $a=\frac{\pi}{2}-\phi_1$, $b=\frac{\pi}{2}-\phi_2$, $c=d$, and $B=h$.  The derivation of Equation (\ref{great-circle-coords-dlon}) is much more involved and beyond the scope of this document.
 \end{document}

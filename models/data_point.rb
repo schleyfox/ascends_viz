@@ -6,7 +6,7 @@ class DataPoint < ActiveRecord::Base
   def self.from_files(dir_name, flight)
     from_itt_data(dir_name).each do |dp|
       DataPoint.create( :time => dp[0].to_i,
-                        :itt_co2 => dp[5],
+                        :itt_co2 => dp[5]/dp[2], #ratio of backscatter to reference
                         :lat => dp[7],
                         :lon => dp[8],
                         :altitude => dp[9],
@@ -55,7 +55,6 @@ class DataPoint < ActiveRecord::Base
     data_points = []
     data_points_hash = {}
     file_thread = Thread.new do
-    #timezone_offset += 1
       files.each do |file|
         n = (File.size(file)/(9.0*8.0)).floor
     
@@ -69,8 +68,6 @@ class DataPoint < ActiveRecord::Base
       end
     
       avg_data_points = average_to_second(data_points)
-
-      puts car(car(avg_data_points))
 
       data_points_hash = avg_data_points.inject({}) do |h, i|
         h[car(i)] = i
@@ -101,8 +98,6 @@ class DataPoint < ActiveRecord::Base
     
       avg_gps = average_to_second(gps)
 
-      puts car(car(avg_gps))
-    
       gps_hash = avg_gps.inject({}) do |h, i|
         h[car(i)] = i
         h
