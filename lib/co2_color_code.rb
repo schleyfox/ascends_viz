@@ -134,8 +134,8 @@ class Co2ColorCodeBar < Processing::App
       orig_val = Co2ColorCode.lerp($co2_low_bound, $co2_high_bound, value) #.to_i
       
       # label significant points on the bar with values
-      if ((orig_val*1000).to_i % 10 == 0) && (orig_val*1000).to_i != last_line_number
-        last_line_number = (orig_val*1000).to_i
+      if ((orig_val*10).to_i % 10 == 0) && (orig_val*10).to_i != last_line_number
+        last_line_number = (orig_val*10).to_i
         text("#{orig_val}", 2, i+12)
       end
     end
