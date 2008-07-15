@@ -4,48 +4,41 @@ class DataPoint < ActiveRecord::Base
   belongs_to :flight
 
   def self.from_files(dir_name, flight)
-    from_itt_data(dir_name).each do |dp|
+    dps = ary_to_time_hash(
+      from_itt_data(dir_name)).merge(
+        ary_to_time_hash(from_insitu_data(dir_name, flight.date))) do |k, itt, insitu|
+          [k] + cdr(itt) + cdr(insitu)
+        end.values.select{|x| x.size >= 10}
+
+    dps.each do |dp|
       DataPoint.create( :time => dp[0].to_i,
-                        :itt_co2 => dp[5],
+                        :itt_co2 => dp[5]/dp[2], #ratio of backscatter to reference
                         :lat => dp[7],
                         :lon => dp[8],
                         :altitude => dp[9],
+                        :insitu_co2 => dp[10],
                         :flight =>  flight)
     end
   end
 
   private
 
-  #currently failtronic, do not use
-  def self.from_insitu_data(dir_name)
-    gps = File.read(Dir.glob("#{dir_name}/insitu/nav*.txt").first).split(/\r?\n/)
-    gps = gps[8...gps.size]
-    data_point_coords = gps.map do |line|
-      dp = DataPoint.new
-      data = line.split("\t").values_at(0,10,11,12)
-      dp.time = data.shift
-      dp.lon = data.shift
-      dp.lat = data.shift
-      dp.altitude = data.shift
-      dp.flight_id = flight.id
-      dp
-    end
-
+  # Array Format: [TimeStamp, CO2_PPM]
+  def self.from_insitu_data(dir_name, date)
     co2 = cdr(File.read(Dir.glob("#{dir_name}/insitu/lear*.txt").first).split(/\r?\n/))
-    co2 = co2.map{|x| x.split(/,\s+/)[2].to_f }
-    data_points = data_point_coords.map do |dp|
-      if dp.altitude > 0
-        dp.insitu_co2 = co2.shift
+    co2.map! do |x| 
+      l = x.split(/,\s+/)
+      if l[2].to_f != -9999.99
+        [date.strftime("%s").to_i + l[1].to_i + 4.hours, l[2].to_f]
+      else
+        nil
       end
-      dp
-    end
-    #data_points.each{|dp| dp.save }
-    ActiveRecord::Base.logger.warn( 
-      "DROPPING #{co2.size} PIECES OF VERY IMPORTANT DATA") if co2.size
-    data_points
+    end.compact!
+    puts car(car(co2))
+    co2
   end
 
-  def self.from_itt_data(dir_name, timezone_offset=-5)
+  def self.from_itt_data(dir_name)
     files = Dir.glob("#{dir_name}/itt/*.dbl")
   
     gps_file = Dir.glob("#{dir_name}/itt/*in-situ_gps_serial_data.txt").first
@@ -55,7 +48,6 @@ class DataPoint < ActiveRecord::Base
     data_points = []
     data_points_hash = {}
     file_thread = Thread.new do
-    #timezone_offset += 1
       files.each do |file|
         n = (File.size(file)/(9.0*8.0)).floor
     
@@ -70,13 +62,7 @@ class DataPoint < ActiveRecord::Base
     
       avg_data_points = average_to_second(data_points)
 
-      puts car(car(avg_data_points))
-
-      data_points_hash = avg_data_points.inject({}) do |h, i|
-        h[car(i)] = i
-        h
-      end
-
+      data_points_hash = ary_to_time_hash(avg_data_points)
     end
     gps_hash = {}
     gps_thread = Thread.new do
@@ -101,13 +87,7 @@ class DataPoint < ActiveRecord::Base
     
       avg_gps = average_to_second(gps)
 
-      puts car(car(avg_gps))
-    
-      gps_hash = avg_gps.inject({}) do |h, i|
-        h[car(i)] = i
-        h
-      end
-
+      gps_hash = ary_to_time_hash(avg_gps)
     end
   
     file_thread.join
@@ -143,5 +123,12 @@ class DataPoint < ActiveRecord::Base
         [acc[0]] + cdr(acc).map{|x| x/points.size}
       end
     end.sort {|a,b| a[0] <=> b[0]}
+  end
+
+  def self.ary_to_time_hash(ary)
+    ary.inject({}) do |h, i|
+      h[car(i)] = i
+      h
+    end
   end
 end
