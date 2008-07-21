@@ -34,7 +34,6 @@ kml_files.each do |j| doc = Hpricot.XML(open(Dir.getwd+"/"+j))
       kml = KMLFile.new
       kml.objects << KML::Document.new(:name => "Merged Hysplit Stuff")
       f.write(kml.render)
-      puts "Wrote: #{kml.render}"
     end unless File.exists?(merged_kml)
     f = open(merged_kml, 'r+')
     fr = f.readlines.join()
@@ -43,7 +42,6 @@ kml_files.each do |j| doc = Hpricot.XML(open(Dir.getwd+"/"+j))
     (h/:Document).append(txt)
     f.reopen(merged_kml, "w+")
     f.write(h.to_s)
-    puts "Wrote: #{h.to_s}"
     f.close
   end
 end
