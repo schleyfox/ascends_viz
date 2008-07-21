@@ -1,4 +1,4 @@
-desc "Write a task description and write it good!"
+desc "Make the HYSPLIT model output into something useful for Google Earth."
 task :plot_hysplit do
   get_db_conn(GTRON_ENV)
   FileUtils.rm_r Dir.glob("#{GTRON_ROOT}/output/hysplit/kml/*")

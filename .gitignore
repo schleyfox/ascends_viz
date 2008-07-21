@@ -1,5 +1,7 @@
 input/*
 output/*
+output/hysplit/kml/*
+output/hysplit/plots/*
 hysplit_model_output/*
 log/*
 db/*.sqlite3
