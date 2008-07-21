@@ -20,6 +20,18 @@ class DataPoint < ActiveRecord::Base
                         :flight =>  flight)
     end
   end
+  
+  def to_tuple
+    return self.lon.to_s+","+self.lat.to_s+","+self.altitude.to_s
+  end
+
+  def to_tuple_ary
+    [lon, lat]
+  end
+
+  def co2
+    itt_co2 || insitu_co2 || nil || "Youre a fucking retard"
+  end
 
   private
 

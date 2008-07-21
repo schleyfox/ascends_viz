@@ -52,13 +52,6 @@ class KmlTools
     bounds
   end
 
-  # Creates a square extruded to the ground in a columnar fashion
-  def self.square_column(lon, lat, alt, heading, side_length)
-    square = square(lon, lat, alt, heading, side_length)
-    square.extrude = true
-    square
-  end
-
   # Creates square polygon for Google Earth centered at [@lon@,@lat@,@alt@]
   # oriented at the angle @heading@ with the side length @side_length@
   def self.square(lon, lat, alt, heading, side_length)
