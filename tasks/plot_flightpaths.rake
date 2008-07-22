@@ -1,5 +1,5 @@
 desc "Plots the flightpath in Google Earth"
-task :plot_datapoint_paths do
+task :plot_flightpaths do
   output_path = ENV["OUTPUT_PATH"] || "#{GTRON_ROOT}/output"
   get_db_conn(GTRON_ENV)
   kml = KMLFile.new
