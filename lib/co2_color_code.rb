@@ -2,8 +2,11 @@ require 'lib/ruby-processing'
 
 # global variables for the benefit of Processing
 # lower and upper bounds for recorded CO2 
-$co2_low_bound = 0.0
-$co2_high_bound = 5.5 
+$itt_low_bound = 0.0
+$itt_high_bound = 5.5 
+
+$ins_low_bound = 380
+$ins_high_bound = 450
 
 # Co2ColorCode implements the color scale used to render columns of
 # CO2 in Google Earth.  
@@ -23,7 +26,7 @@ class Co2ColorCode
       return abgr(0,0,0,0)
     else
       c = normalized_colorify(
-        normalize($co2_low_bound, $co2_high_bound, v)
+        normalize($itt_low_bound, $itt_high_bound, v)
       )
       
       abgr(255 ,c[2], c[1], c[0])
@@ -33,7 +36,7 @@ class Co2ColorCode
   def self.insitu_colorify(value)
     v = value.to_f
     c = normalized_colorify(
-      normalize(380, 450, v)
+      normalize($ins_low_bound, $ins_high_bound, v)
     )
 
     abgr(255, c[2], c[1], c[0])
@@ -65,7 +68,7 @@ class Co2ColorCode
   # Writes a PNG of the color scale to disk using Processing.  This image can
   # be used as a ScreenOverlay in Google Earth
   def self.make_color_bar
-    Co2ColorCodeBar.new :title => "Color Bar", :height => 400, :width => 60 
+    Co2ColorCodeBar.new :title => "Color Bar", :height => 400, :width => 90 
   end
 
   # Convenience method to format integer color components into abgr hex format
@@ -130,22 +133,27 @@ class Co2ColorCodeBar < Processing::App
     text_font(font)
     fill(0)
 
-    last_line_number = nil #ensures proper spacing of labels
+    text("ITT", 2, 12)
+    text("ppm", width - text_width("ppm"), 12)
+
+
     for i in (0...height)
       value = (1.0/height)*i
 
       colors = Co2ColorCode.normalized_colorify(value)
 
       stroke(colors[0], colors[1], colors[2])
-      line(25,i,width,i)
+      line(width/3.0,(height-i),(2*width)/3.0,(height-i))
 
       # find co2 measurement associated with generated normalized value
-      orig_val = Co2ColorCode.lerp($co2_low_bound, $co2_high_bound, value) #.to_i
-      
-      # label significant points on the bar with values
-      if ((orig_val*10).to_i % 10 == 0) && (orig_val*10).to_i != last_line_number
-        last_line_number = (orig_val*10).to_i
-        text("#{orig_val}", 2, i+12)
+      itt_val = Co2ColorCode.lerp($itt_low_bound, $itt_high_bound, value)
+      ins_val = Co2ColorCode.lerp($ins_low_bound, $ins_high_bound, value)
+
+      # label points on the bar with values
+      if i % (height/6.0).floor == 0 
+        text("%2.1f" % itt_val, 2, (height-i)-6)
+        text("%3d" % ins_val, width-(text_width("%3d" % ins_val))-2, 
+             (height-i)-6)
       end
     end
 

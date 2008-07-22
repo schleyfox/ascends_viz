@@ -1,5 +1,5 @@
 desc "Plot columns of CO2"
-task :plot_flightpath_with_co2_columns do
+task :plot_co2_columns do
   output_path = ENV["OUTPUT_PATH"] || "#{GTRON_ROOT}/output"
   get_db_conn(GTRON_ENV)
 

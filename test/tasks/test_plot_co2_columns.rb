@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
-class TestGraphData < Test::Unit::TestCase
+class TestPlotCo2Columns < Test::Unit::TestCase
   def setup
     get_db_conn(GTRON_ENV)
     @rake = Rake::Application.new
     Rake.application = @rake
-    load File.dirname(__FILE__) + '/../../tasks/graph_data.rake'
+    load File.dirname(__FILE__) + '/../../tasks/plot_flightpath_with_co2_columns.rake'
   end
 
   should "be true" do
