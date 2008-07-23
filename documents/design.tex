@@ -26,7 +26,7 @@ The data are organized into flights (which makes sense because that is how the d
 
 \subsection*{Insitu}
 
-The insitu data are in CSV files.  Other than the timestamps being essentially nonsensical, it is pretty simple to parse and deal with.  However, the complete non-agreement with all other data is unsettling, but that seems to be a symptom of the early stage of development of this project.
+The insitu data are in CSV files. The CO$_2$ readings are found in the files \texttt{lear*.txt}.  The first column seems to be nonsensical and a constant 999.  The second column is seconds since midnight (in localtime/EDT).  The third column is the mixing ration (parts per million) of CO$_2$ at the altitude the plane was flying.
 
 \subsection*{ITT}
 
@@ -94,12 +94,12 @@ Going in the opposite direction, coordinates of the form ($\phi_2$,$\lambda_2$) 
 
 \begin{equation}
 \label{great-circle-coords-lat}
-\phi_2 = \arcsin(\sin\phi_1\cos d+\cos\phi_1\sin d\cos(h))
+\phi_2 = \arcsin(\sin\phi_1\cos{d}+\cos\phi_1\sin d\cos(h))
 \end{equation}
 
 \begin{equation}
 \label{great-circle-coords-dlon}
-\Delta\lambda = \arctan\left(\frac{\sin(h)\sin d\cos\phi_1}{\cos d-\sin\phi_1\si\phi_2}\right)
+\Delta\lambda = \arctan\left(\frac{\sin(h)\sin d\cos\phi_1}{\cos d-\sin\phi_1\sin\phi_2}\right)
 \end{equation}
 
 \begin{equation}
@@ -109,8 +109,21 @@ Going in the opposite direction, coordinates of the form ($\phi_2$,$\lambda_2$) 
 Equation (\ref{great-circle-coords-lat}) is derived from the spherical law of cosines
 
 \begin{equation}
-\cos b =\cos c\cos a + \sin c\sin a\cos B
+\cos{b} =\cos{c}\cos{a} + \sin c\sin a\cos B
 \end{equation}
 
 where $a=\frac{\pi}{2}-\phi_1$, $b=\frac{\pi}{2}-\phi_2$, $c=d$, and $B=h$.  The derivation of Equation (\ref{great-circle-coords-dlon}) is much more involved and beyond the scope of this document.
+
+\texttt{KmlTools} also contains applications of these formul\ae for the drawing of shapes.  These shape functions often come in two forms, \textit{shape}() and \textit{shape}\texttt{\_coords}().  The \texttt{\_coords} function just generates the \texttt{[lon,lat,alt]} coordinates, while the undecorated name wraps the coordinates into a \texttt{KML::Polygon}.
+
+\subsection*{lisp.rb}
+
+Due to personal preference, I have included a small library file called \texttt{lisp.rb}.  It includes the functions \texttt{car} and \texttt{cdr}.  They both take a single argument, an array.  \texttt{car} returns the first element of the array (the head) and \texttt{cdr} returns all the elements after the first (the tail).  The appearance of these functions throughout the code might be unsettling at first, but they are truly helpful to me.
+
+\subsection*{Tasks}
+
+
+
+
+
 \end{document}
