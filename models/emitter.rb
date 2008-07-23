@@ -20,4 +20,8 @@ class Emitter < ActiveRecord::Base
     end
   end
 
+  def pos_to_tuple
+    [lon,lat, 0]
+  end
+
 end

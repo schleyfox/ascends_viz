@@ -9,3 +9,4 @@ Usage Requirements:
 * ruby_kml (gem install schleyfox-ruby_kml -s http://gems.github.com)
 * gigantron (gem install gigantron)
 * hpricot (gem install hpricot --source http://caldersphere.net)
+* rubyzip (gem install rubyzip)
