@@ -1,0 +1,155 @@
+VA
+
+
+Tangier,37.5233,-76.0035,DFO,,4.1
+
+Commonwealth Cheasapeake,37.992127,-75.536797,DFO,,402.5
+
+Tasley,37.710278,-75.700556,DFO,,27
+
+Diesel Group 1,37.7664,-75.6463,DFO,,12
+
+Covanta Alexandria/Arlington Energy, 38.801285,-77.127745,SW,,29
+
+Potomac River,38.820324,-77.041332,BIT,DFO,514
+
+Scott Wood,37.338611,-78,WDS,,3.7
+
+Diesel Group 2,37.3326,-77.9789,DFO,,4
+
+Brasfield,37.2048,-77.3979,WAT,,3
+
+Suffolk Energy Partners LP,36.75539,-76.508635,LFG,,3.2
+
+Ladysmith,38.071941,-77.513092,NG,DFO,357
+
+Oilseed Plant,36.6792,-76.3067,BIT,,1.7
+
+Chesapeake 1,36.771388,-76.301944,DFO,,162.6
+
+Chesapeake 2,36.771388,-76.301944,BIT,DFO,649.5
+
+Commonwealth Atlantic LP,36.773255,-76.311486,NG,DFO,388.8
+
+Park 500 Philip Morris USA,37.3792,-77.59,BIT,DFO,19.1
+
+Chesterfield 1,37.381944,-77.381944,BIT,DFO,1352.9
+
+Chesterfield 2,37.381944,-77.381944,NG,DFO,446.6
+
+Cogentrix Hopewell,37.297152,-77.27637,BIT,,135
+
+Cogentrix of Richmond 1,37.45859,-77.427031,BIT,TDF,135
+
+Cogentrix of Richmond 2,37.45859,-77.427031,BIT,NG,135
+
+West Spring Street 1,38.4886,-77.9574,NG,DFO,2.7
+
+West Spring Street 2,38.4886,-77.9574,DFO,,5.1
+
+Boydton Plank Road Cogen Plant,37.0763,-77.638,WO,DFO,3
+
+Covanta Fairfax Energy,38.762,-77.2903,MSW,NG,124
+
+I 95 Municipal Landfill Phase I,38.693059,-77.237124,LFG,,3.2
+
+I 95 Landfill Phase II,38.693059,-77.237124,LFG,,3.2
+
+Remington,38.529432,-77.799767,NG,DFO,705.5
+
+Marsh Run Generating,38.529095,-77.800723,NG,DFO,513.3
+
+Tenaska Virginia Generating Station,37.86765,-78.3807,NG,DFO,946.1
+
+Bremo Bluff,37.713089,-78.283024,BIT,DFO,254.2
+
+Emporia,36.700422,-77.559446,WAT,,2.4
+
+Doswell Energy Center,37.4904,-77.2629,NG,DFO,939
+
+Darbytown,37.2935,-77.2215,NG,DFO,368.4
+
+Richmond Electric,37.508982,-77.360839,LFG,,3
+
+Stone Container Hopewell Mill,37.1804,-77.1604,BLQ,WDS,47.6   
+
+Hopewell Power Station,37.1740,-77.1523,BIT,WC,71.1
+
+International Paper Franklin Mill 1,36.681573,-76.915718,NG,DFO,58.9
+
+International Paper Franklin Mill 2,36.681573,-76.915718,BLQ,BIT,96.5
+
+Birchwood Power,38.26404,-77.31023 ,BIT,DFO,258.3
+
+West Point Mill,37.3243,-76.4832,BLQ,WDS,101
+
+North Anna 1,38.057327,-77.79556,NUC,,1959.4
+
+North Anna 2,38.057327,-77.79556,WAT,,1
+
+Gordonsville Energy LP,38.134628,-78.187068,NG,DFO,300.4
+
+Louisa Generating,38.124244,-78.218615,NG,DFO,509.1
+
+John H Kerr,36.598889,-78.301667,WAT,,204
+
+Mecklenburg Power Station,36.598596,-78.532360,BIT,DFO,132
+
+Bayview,37.271111,-75.967777,DFO,,12
+
+Wythe Park Power Petersburg Plant,37.1325,-77.2435,WO,DFO,3
+
+Cogentrix Portsmouth,36.869648,-76.361381,BIT,,135
+
+SPSA Waste to Energy Power Plant,36.809409,-76.304381,BIT,,60
+
+Hopewell Cogeneration,37.287593,-77.282772,NG,DFO,399
+
+Church Street Plant,38.7526,-77.4643,DFO,,7.3
+
+Godwin Drive Plant,38.7052,-77.4828,DFO,,6.3
+
+VMEA 1 Credit Gen,38.7052,-77.4828,DFO,,12.8
+
+VMEA Peaking Gen,38.7052,-77.4828,DFO,,6.4
+
+Dominion/Lo Mar 1,38.7052,-77.4828,GT,DFO,12
+
+Dominion/Lo Mar 2,38.7052,-77.4828,IC,DFO,7.2
+
+Gateway Generating Facility,38.731481,-77.514147,IC,DFO,1.8
+
+Prince William County Landfill,38.633804,-77.429460,IC,LFG,1.8
+
+Possum Point 1,38.534722,-77.2825,NG,DFO,965.9
+
+Possum Point 2,38.534722,-77.2825,RFO,DFO,882      
+
+Possum Point 3,38.534722,-77.2825,DFO,,96
+
+Northern Neck,37.948316,-76.710655,DFO,,82.8
+
+Bellmeade Power Station,37.497759,-77.432815,NG,DFO,330
+
+Wythe Park Power 3 Richmond Plant,37.193529,-77.460526,DFO,WO,3
+
+Pretlow,36.656547,-76.918945,DFO,,3.2
+
+Downtown,36.7264,-77.1076,DFO,,3.2
+
+Southampton Power Station,36.654750,-76.996408,BIT,DFO,71.1
+
+Diesel Group 3,36.7264,-77.1076,DFO,,4
+
+Surry,37.163315,-76.694183,NUC,,1695
+
+Gravel Neck 1,37.156762,-76.697467,DFO,,40.1
+
+Gravel Neck 2,37.156762,-76.697467,NG,DFO,367.6
+
+Yorktown 1,37.214032,-76.453559,BIT,DFO,375
+
+Yorktown 2,37.214032,-76.453559,RFO,DFO,882
+
+
+
