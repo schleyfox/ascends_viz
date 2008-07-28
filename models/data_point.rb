@@ -3,22 +3,29 @@ EPOCH_FAIL = 2082844800 #seconds between 1904 and 1970
 class DataPoint < ActiveRecord::Base
   belongs_to :flight
 
+### @export "Merge Tuples"
   def self.from_files(dir_name, flight)
-    dps = ary_to_time_hash(
-      from_itt_data(dir_name)).merge(
-        ary_to_time_hash(from_insitu_data(dir_name, flight.date))) do |k, itt, insitu|
-          [k] + cdr(itt) + cdr(insitu)
-        end.values.select{|x| x.size >= 10}
+    itt_hash = ary_to_time_hash(from_itt_data(dir_name))
+    insitu_hash = ary_to_time_hash(
+      from_insitu_data(dir_name, flight.date))
+    
+    dps = itt_hash.merge(insitu_hash) do |k, itt, insitu|
+      [k] + cdr(itt) + cdr(insitu)
+    end.values.select{|x| x.size >= 10}
+### @end
 
+### @export "Create DataPoints"
     dps.each do |dp|
       DataPoint.create( :time => dp[0].to_i,
-                        :itt_co2 => dp[5]/dp[2], #ratio of backscatter to reference
+                        #ratio of backscatter to reference
+                        :itt_co2 => dp[5]/dp[2], 
                         :lat => dp[7],
                         :lon => dp[8],
                         :altitude => dp[9],
                         :insitu_co2 => dp[10],
                         :flight =>  flight)
     end
+### @end
   end
   
   def to_tuple
@@ -34,15 +41,19 @@ class DataPoint < ActiveRecord::Base
   end
 
   private
-
+### @export "From Insitu"
   # Array Format: [TimeStamp, CO2_PPM]
   def self.from_insitu_data(dir_name, date)
-    co2 = cdr(File.read(Dir.glob("#{dir_name}/insitu/lear*.txt").first).split(/\r?\n/))
+    co2 = cdr(File.read(Dir.glob("#{dir_name}/insitu/lear*.txt").first)
+    co2 = co2.split(/\r?\n/))
+
     co2.map! do |x| 
       l = x.split(/,\s+/)
+### @export "From Insitu"
       if l[2].to_f != -9999.99
         [date.strftime("%s").to_i + l[1].to_i + 4.hours, l[2].to_f]
       else
+### @end
         nil
       end
     end.compact!
@@ -55,8 +66,10 @@ class DataPoint < ActiveRecord::Base
   
     gps_file = Dir.glob("#{dir_name}/itt/*in-situ_gps_serial_data.txt").first
   
-    # Array Format: [TimeStamp,Ref_On,Ref_Side,Ref_Off,Sci_On,Sci_Side,Sci_Off,Lat,Lon,Alt]
-  
+    # Array Format: 
+    # [TimeStamp,Ref_On,Ref_Side,Ref_Off,Sci_On,Sci_Side,Sci_Off,Lat,Lon,Alt]
+    
+### @export "From ITT DataPoints"
     data_points = []
     data_points_hash = {}
     file_thread = Thread.new do
@@ -68,7 +81,8 @@ class DataPoint < ActiveRecord::Base
           dat = IO.read(file, 9*8, offset).unpack(DataFormats::CO2)
 
           #adjust for epoch difference
-          data_points << [dat[0].floor.to_i - EPOCH_FAIL] + dat[1,3] + dat[5,3] 
+          data_points << 
+            [dat[0].floor.to_i - EPOCH_FAIL] + dat[1,3] + dat[5,3] 
         end
       end
     
@@ -76,6 +90,8 @@ class DataPoint < ActiveRecord::Base
 
       data_points_hash = ary_to_time_hash(avg_data_points)
     end
+### @end
+
     gps_hash = {}
     gps_thread = Thread.new do
 

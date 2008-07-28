@@ -2,6 +2,7 @@
 
 \usepackage{palatino}
 \usepackage{amsmath}
+\usepackage{graphicx}
 
 % Idiopidae
 \usepackage{fancybox}
@@ -122,8 +123,100 @@ Due to personal preference, I have included a small library file called \texttt{
 
 \subsection*{Tasks}
 
+The visualizations are organized into Rake tasks.  Rake is a standard ruby utility that provides Make-like functionality.  These tasks can be run from the command line with \texttt{rake task\_name}.  This provides a convenient way to manage the various capabilities of this application.
+
+\subsubsection*{import}
+
+Import loads flight data from \texttt{input/} or the path specified by the \texttt{INPUT\_PATH} variable on the command line.  
+
+Flight data is imported with the function \texttt{Flight::load()}. This function creates a new Flight record, extracting the flight date and flight number from the directory name.  It then delegates out to \texttt{DataPoint::from\_files()}.
+
+\begin{code}{from-files1}{Merging Tuples}
+### @include "../models/data_point.rb" "Merge Tuples"
+### @end
+\end{code}
+
+From\_files works by generating tuples of the form \texttt{[unix time, ...]} from the ITT data and the insitu data. These tuples are transformed into hashes with the timestamp as the key.  This allows them to be easily merged for a given second.  Only datapoints with ITT data are of interest, so all tuples with fewer than 10 elements are discarded.
+
+The DataPoints are then created for the tuples.
+
+\begin{code}{from-files2}{Creating DataPoints}
+### @include "../models/data_point.rb" "Create DataPoints"
+### @end
+\end{code}
+
+ITT data is read from the \texttt{*.dbl} files in the \texttt{itt/} directory.  Each file is read as a series of records consisting of 9 8-byte double-precisionnumbers in little-endian byte format.  These are unpacked into an array.  The data\_points tuple is constructed by trimming the dat array.  The timestamps are taken from 1904, so the \texttt{EPOCH\_FAIL} (bad pun) constant is subtracted to put them into standard unix time.  The data\_points are then averaged to the nearest second from the sample rate of 5Hz.
+
+\begin{code}{from-itt-data}{From ITT DataPoints}
+### @include "../models/data_point.rb" "From ITT DataPoints"
+### @end
+\end{code}
+
+The process for reading the GPS data is very similar, except the data are comma delimited.  The GPS and ITT data are merged by timestamp into the tuples that are returned.
+
+The reading of the GPS data and the ITT data take place in parallel, thanks to JRuby's real threads.
 
 
+Insitu data is read from the \texttt{lear*.txt} CSV.  The timestamp is in seconds since the midnight of the flight date in EDT (-0400).  Fill values are discarded.
+
+\begin{code}{from-insitu}{From Insitu}
+### @include "../models/data_point.rb" "From Insitu"
+### @end
+\end{code}
+
+\subsubsection*{plot\_flightpaths}
+
+Plot\_flightpaths assembles the kml file \texttt{output/datapoint\_paths.kml} which contains the flightpaths of all the flights in the database.  The flightpaths are generated from the DataPoint coordinates and represented by a \texttt{KML::LineString}.
+
+\subsubsection*{plot\_co2\_columns}
+
+This task creates color coded columns corresponding to the values of the columns of air underneath the flightpath.  On top of these columns, boxes are drawn that correspond to the ppm measurement of the insitu instrument at the flight altitude.  This visual is output to \texttt{output/co2\_columns.kml}.
+
+\begin{code}{plot-co2-columns}{Create CO2 Columns}
+### @include "../tasks/plot_co2_columns.rake" "Create CO2 Columns"
+### @end
+\end{code}
+
+The process for creating the visuals for Google Earth is two-step.  First column coordinates are created by calculating the headings between each adjacent datapoint.  Points are then found at a radius of 150m that form a line perpendicular to the heading and intersect the first of the datapoints.
+
+These column coordinates are then handled by \texttt{make\_column\_placemarks}, where the coordinates are used to create squares extruded to the ground.  KML style attributes are used in conjunction with the \texttt{CO2ColorCode} to apply color to the columns. Finally, the columns are encapsulated within a placemark for display in Google Earth.  
+
+The InSitu boxes are drawn on top using a similar method.  A merging algorithm combines similarly colored adjacent boxes to help reduce file sizes.  It seems that this can often reduce the file size by a factor of 2.
+
+\subsubsection*{make\_color\_bar}
+
+This task creates a color bar for the CO$_2$ insitu and ITT data.  The output is a PNG image at \texttt{output/co2\_color\_bar.png} and a KML file which overlays the image on the screen at \texttt{output/co2\_color\_bar.kml}.  The color bar should be the same as Figure (\ref{co2-color-bar}).   
+
+\begin{figure}
+\centering
+\includegraphics[width=19mm]{../output/co2_color_bar.eps}
+\caption{Color Bar for CO$_2$ data.}
+\label{co2-color-bar}
+\end{figure}
+
+This is generated using Ruby-Processing in Co2ColorCodeBar and Co2ColorCode classes.  The drawing takes place in Co2ColorCodeBar and is pretty standard Processing code.  
+
+The color coding takes place in Co2ColorCode and applies a function to a normalized value (on range [0.0, 1.0]).  Insitu and ITT values are normalized to this range through global variables that define the upper and lower bounds for the expected sensor values.
+
+\begin{code}{color-bounds}{CO2 Bounds Variables}
+### @include "../lib/co2_color_code.rb" "Bounds Variables"
+### @end
+\end{code}
+
+ITT values are colored through \texttt{Co2ColorCode::itt\_colorify} and Insitu values are colored through \texttt{Co2ColorCode::insitu\_colorify}.  Once the values are normalized they are passed to the function \texttt{normalized\_colorify}which assigns colors in the form of $(r,g,b)$ through the function
+
+\begin{equation}
+\label{normalized-colorify}
+c(x)= \begin{cases}
+(255,255,255), & x < \frac{1}{27} \\
+(-918x+289,-783x+169,255), & x < \frac{6}{27} \\
+(-1215x+448,-1377x+561,255), & x < \frac{11}{27} \\
+(-1296x+719,255,-1296x+719), & x < \frac{16}{27} \\
+(255,-1296x+1023,0), & x < \frac{22}{27} \\
+(-1026x+1052,0,432x-337), & x < \frac{26}{27} \\
+(0,0,0), & x >= \frac{26}{27} \\
+\end{cases}
+\end{equation}
 
 
 \end{document}

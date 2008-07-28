@@ -6,13 +6,14 @@ task :plot_co2_columns do
   kml = KMLFile.new
   doc = KML::Document.new(:name => "CO2 Columns")
   
-  
   Flight.find(:all).map do |flight|
     folder = KML::Folder.new(:name => "Flight #{flight.flight_number}")
-    
+
+### @export "Create CO2 Columns"
     column_coords = make_column_coords(flight.data_points.find(:all))
 
     folder.features = make_column_placemarks(column_coords)
+### @end
 
     doc.features << folder
   end
@@ -24,7 +25,8 @@ def make_column_coords(dps)
   heading = 0
   distance = 0
   column_coords = []
-  #assemble datapoint tuples as [Column Pair coordinates, ITT , Insitu, heading]
+  #assemble datapoint tuples as 
+  #[Column Pair coordinates, ITT , Insitu, heading]
   dps.each_with_index do |dp, i|
     if dp.itt_co2 
       if i < (dps.size-1)
@@ -34,11 +36,12 @@ def make_column_coords(dps)
         distance = KmlTools.great_circle_distance(start, finish)
         new_heading = KmlTools.heading(start, finish)
         #angle difference formula
-        heading = new_heading unless ((((new_heading+180) - heading) % 360) - 180).abs > 90.0
+        heading = new_heading unless 
+          ((((new_heading+180) - heading) % 360) - 180).abs > 90.0
       end
       column_coords << [KmlTools.column_pair(dp.lon, dp.lat, dp.altitude,
-                                              heading, 150), 
-                                             dp.itt_co2, dp.insitu_co2, heading]
+                                   heading, 150), 
+                                   dp.itt_co2, dp.insitu_co2, heading]
       if distance > 200
         column_coords << nil
       end
