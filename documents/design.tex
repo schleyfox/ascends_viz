@@ -203,7 +203,7 @@ The color coding takes place in Co2ColorCode and applies a function to a normali
 ### @end
 \end{code}
 
-ITT values are colored through \texttt{Co2ColorCode::itt\_colorify} and Insitu values are colored through \texttt{Co2ColorCode::insitu\_colorify}.  Once the values are normalized they are passed to the function \texttt{normalized\_colorify}which assigns colors in the form of $(r,g,b)$ through the function
+ITT values are colored through \texttt{Co2ColorCode::itt\_colorify} and Insitu values are colored through \texttt{Co2ColorCode::insitu\_colorify}.  Once the values are normalized they are passed to the function \texttt{normalized\_colorify} which assigns colors in the form of $(r,g,b)$ (where each is on the range [0,255]) through the function
 
 \begin{equation}
 \label{normalized-colorify}
@@ -217,6 +217,9 @@ c(x)= \begin{cases}
 (0,0,0), & x >= \frac{26}{27} \\
 \end{cases}
 \end{equation}
+
+These values are then transformed into hexadecimal and assembled into an 8 character string in the form ``AABBGGRR''.  The alpha channel is set to a constant 255 for full opacity.
+
 
 
 \end{document}
