@@ -12,7 +12,10 @@ task :plot_co2_columns do
 ### @export "Create CO2 Columns"
     column_coords = make_column_coords(flight.data_points.find(:all))
 
-    folder.features = make_column_placemarks(column_coords)
+    columns = make_column_placemarks(column_coords)
+
+    folder.features = divide_into_30minute_folders(
+      divide_into_minute_folders(columns))
 ### @end
 
     doc.features << folder
@@ -26,7 +29,7 @@ def make_column_coords(dps)
   distance = 0
   column_coords = []
   #assemble datapoint tuples as 
-  #[Column Pair coordinates, ITT , Insitu, heading]
+  #[Column Pair coordinates, ITT , Insitu, heading, time]
   dps.each_with_index do |dp, i|
     if dp.itt_co2 
       if i < (dps.size-1)
@@ -41,7 +44,8 @@ def make_column_coords(dps)
       end
       column_coords << [KmlTools.column_pair(dp.lon, dp.lat, dp.altitude,
                                    heading, 150), 
-                                   dp.itt_co2, dp.insitu_co2, heading]
+                                   dp.itt_co2, dp.insitu_co2, heading, 
+                                   dp.time]
       if distance > 200
         column_coords << nil
       end
@@ -72,15 +76,37 @@ def make_column_placemarks(column_coords)
         end
       end
 
+      point_placemarks = []
       placemark = KML::Placemark.new( :name => c[2] )
       if(!box_tracker.include?(i))
-        placemarks << KmlTools.cube(cube_coords, 50, Co2ColorCode.insitu_colorify(c[2]), KmlTools.DEFAULT_BOX)
+        point_placemarks << KmlTools.cube(cube_coords, 50, Co2ColorCode.insitu_colorify(c[2]), KmlTools.DEFAULT_BOX)
         col = KML::Polygon.new( :outer_boundary_is => KML::LinearRing.new(:coordinates => cube_coords),
                                 :altitude_mode => 'absolute', :extrude => true)
         placemark.features << sty << col
-        placemarks << placemark
+        point_placemarks << placemark
+        placemarks << [c[4], point_placemarks]
       end
     end
   end
   placemarks
+end
+
+def divide_into_minute_folders(placemarks)
+  folders = []
+  placemarks.in_groups_of(45, false) do |minute|
+    folders << KML::Folder.new(
+      :name => Time.at(minute[0][0]).strftime("%H:%M %Y-%m-%d"),
+      :features => minute.map{|x| cdr(x)}.flatten)
+  end
+  folders
+end
+
+def divide_into_30minute_folders(minute_folders)
+  folders = []
+  minute_folders.in_groups_of(15, false) do |thirty_minutes|
+    folders << KML::Folder.new(
+      :name => car(thirty_minutes).name,
+      :features => thirty_minutes)
+  end
+  folders
 end

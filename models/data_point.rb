@@ -44,8 +44,8 @@ class DataPoint < ActiveRecord::Base
 ### @export "From Insitu"
   # Array Format: [TimeStamp, CO2_PPM]
   def self.from_insitu_data(dir_name, date)
-    co2 = cdr(File.read(Dir.glob("#{dir_name}/insitu/lear*.txt").first)
-    co2 = co2.split(/\r?\n/))
+    co2 = File.read(Dir.glob("#{dir_name}/insitu/lear*.txt").first)
+    co2 = cdr(co2.split(/\r?\n/))
 
     co2.map! do |x| 
       l = x.split(/,\s+/)
