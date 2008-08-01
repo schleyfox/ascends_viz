@@ -32,7 +32,7 @@ kml_files.each do |j| doc = Hpricot.XML(open("#{Dir.getwd}/#{j}"))
       dp = DataPoint.find(:first, :conditions => {:time => time+(-1*t)}) unless dp
     end
     merged_kml = "#{MERGED_DIR}flight_#{dp.flight.flight_number}.kml"
-    placemark = KML::Placemark.new(:name => "Merged HYSPLIT for Flight #{dp.flight.flight_number}")
+    placemark = KML::Placemark.new(:name => "Merged HYSPLIT for Flight #{dp.flight.flight_number}", :description => Time.at(dp.time).strftime("%H:%M %Y-%m-%d"))
     style = KML::Style.new(:poly_style => KML::PolyStyle.new(:color => Co2ColorCode.itt_colorify(dp.co2), :outline => false))
     placemark.features << style
     placemark.plain_children << Hpricot.uxs(ls.to_s)
