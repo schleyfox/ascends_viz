@@ -18,10 +18,19 @@ task :complete_visualization do
   color_bar_filename = "#{GTRON_ROOT}/output/co2_color_bar.kml"
   color_bar = Hpricot.XML(File.read(color_bar_filename))
 
-  (co2/"/kml/Document").append((color_bar/"/kml/Document/ScreenOverlay").to_html)
-  
-  puts co2.to_html.split("\n").delete_if{|l| /^\s*$/.match(l) }.join("\n")
+  (co2/"/kml/Document").append(
+    (color_bar/"/kml/Document/ScreenOverlay").to_html)
 
+  emitters_filename = "#{GTRON_ROOT}/output/emitters.kmz"
+  emitter = make_emitter_link(emitters_filename)
+
+  (co2/"/kml/Document").append(emitter)
+
+  (co2/"/kml/Document/name").inner_html = "ASCENDS Visualization"
+  
+  File.open("#{GTRON_ROOT}/output/complete_visualization.kml", "w") do |f|
+    f.write co2.to_html.split("\n").delete_if{|l| /^\s*$/.match(l) }.join("\n")
+  end
 end
 
 def hysplit_flight(filename)
@@ -105,7 +114,16 @@ def get_hysplit_folder(folder)
   end
 end
     
-
+def make_emitter_link(filename)
+  xml = <<-XML
+  <NetworkLink>
+    <name>CO2 Emitters</name>
+    <Link>
+      <href>#{File.expand_path filename}</href>
+    </Link>
+  </NetworkLink>
+  XML
+end
 
 def kmltime(string)
   string.strip!
