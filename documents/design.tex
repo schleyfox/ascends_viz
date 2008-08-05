@@ -115,7 +115,7 @@ Equation (\ref{great-circle-coords-lat}) is derived from the spherical law of co
 
 where $a=\frac{\pi}{2}-\phi_1$, $b=\frac{\pi}{2}-\phi_2$, $c=d$, and $B=h$.  The derivation of Equation (\ref{great-circle-coords-dlon}) is much more involved and beyond the scope of this document.
 
-\texttt{KmlTools} also contains applications of these formul\ae for the drawing of shapes.  These shape functions often come in two forms, \textit{shape}() and \textit{shape}\texttt{\_coords}().  The \texttt{\_coords} function just generates the \texttt{[lon,lat,alt]} coordinates, while the undecorated name wraps the coordinates into a \texttt{KML::Polygon}.
+\texttt{KmlTools} also contains applications of these formul\ae{} for the drawing of shapes.  These shape functions often come in two forms, \textit{shape}() and \textit{shape}\texttt{\_coords}().  The \texttt{\_coords} function just generates the \texttt{[lon,lat,alt]} coordinates, while the undecorated name wraps the coordinates into a \texttt{KML::Polygon}.
 
 \subsection*{lisp.rb}
 
@@ -220,6 +220,28 @@ c(x)= \begin{cases}
 
 These values are then transformed into hexadecimal and assembled into an 8 character string in the form ``AABBGGRR''.  The alpha channel is set to a constant 255 for full opacity.
 
+\subsubsection*{run\_hysplit}
 
+This task creates the configuration files necessary to run the HYSPLIT program.  It then runs HYSPLIT for data points at a periodic interval.  It requires one to be a registered user of HYSPLIT and have it installed to \texttt{/hysplit4/}.
+
+\subsubsection*{plot\_hysplit}
+
+This task uses the standard hysplit utilities to create KML for the HYSPLIT output generated from \texttt{run\_hysplit}.  The output is placed in \texttt{output/ hysplit/kml/}
+
+\subsubsection*{merge\_hysplit\_paths}
+
+This task merges all the hysplit plots for each flight into a single, combined kml of the form \texttt{output/hysplit/kml/merged/flight\_N.kml}.
+
+\subsubsection*{import\_emitters}
+
+This imports possible point sources of CO$_2$ from the file specified by the \texttt{FILE} variable.
+
+\subsubsection*{plot\_emitters}
+
+This task plots the emitters in Google Earth.  It uses cute 3d models of power plants to mark the emitters on the map. The output is \texttt{output/emitters.kmz}
+
+\subsubsection*{complete\_visualization}
+
+This task combines all the visualization products into one kml file.  CO$_2$ columns and HYSPLIT plots are merged based on time.  HYSPLIT is hidden by default.  The emitters and the color bar are also included.  The output is \texttt{output/complete\_vi sualization.kml}.  This file depends upon \texttt{emitters.kmz} and \texttt{co2\_color\_bar.png}.
 
 \end{document}
