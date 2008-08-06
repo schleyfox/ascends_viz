@@ -19,6 +19,18 @@
 
 This document attempts to justify and explain the methods to our madness.  In this tome, the structure and interpretation of the data we have been given shall be divined and documented.  The mathematical incantations will be demystified.  Basically, this document will change your life.
 
+\section*{Installation}
+
+A quick word on installing our program is probably necessary.  The requirements are JRuby $\geq$1.1.3 (\textit{http://jruby.codehaus.org/}) and MySql (or PostGres).  Once these are installed on your system, some RubyGems must be installed.  The following commands from your system's command prompt should handle this.
+
+\begin{Verbatim}
+gem install gigantron rubyzip
+gem install hpricot -s http://caldersphere.net
+gem install schleyfox-ruby_kml -s http://gems.github.com
+\end{Verbatim}
+
+Databases must be created to hold the data.  Create the databases \texttt{ascends\_real} and \texttt{ascends\_test}.  After this, copy \texttt{database.yml.example} to \texttt{database.yml} and modify the values to your configuration.  Run \texttt{rake db:migrate} to load the databases with the correct tables.  Everything should be ready for use.
+
 \section*{Data}
 
 The data we received came in two categories: insitu and ITT.  The insitu data are the mixing ratio (in ppm) as recorded at the altitude of the airplane. The ITT data are the value of the backscatter of a laser that is absorbed by CO$_2$. This value can then be used to calculate the number density of CO$_2$ in the column of air below the laser.  The ITT data are the primary focus of the experiment.
