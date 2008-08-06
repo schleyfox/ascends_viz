@@ -138,14 +138,14 @@ Flight data is imported with the function \texttt{Flight::load()}. This function
 
 From\_files works by generating tuples of the form \texttt{[unix time, ...]} from the ITT data and the insitu data. These tuples are transformed into hashes with the timestamp as the key.  This allows them to be easily merged for a given second.  Only datapoints with ITT data are of interest, so all tuples with fewer than 10 elements are discarded.
 
-The DataPoints are then created for the tuples.
+The DataPoints are then created for the tuples.  In line 18, \texttt{dp[5]} is the side sensor and \texttt{dp[2]} is the side reference sensor.  This sensors used can be changed according to the tuple format documented in the code. 
 
 \begin{code}{from-files2}{Creating DataPoints}
 ### @include "../models/data_point.rb" "Create DataPoints"
 ### @end
 \end{code}
 
-ITT data is read from the \texttt{*.dbl} files in the \texttt{itt/} directory.  Each file is read as a series of records consisting of 9 8-byte double-precisionnumbers in little-endian byte format.  These are unpacked into an array.  The data\_points tuple is constructed by trimming the dat array.  The timestamps are taken from 1904, so the \texttt{EPOCH\_FAIL} (bad pun) constant is subtracted to put them into standard unix time.  The data\_points are then averaged to the nearest second from the sample rate of 5Hz.
+ITT data are read from the \texttt{*.dbl} files in the \texttt{itt/} directory.  Each file is read as a series of records consisting of 9 8-byte double-precisionnumbers in little-endian byte format.  These are unpacked into an array.  The data\_points tuple is constructed by trimming the dat array.  The timestamps are taken from 1904, so the \texttt{EPOCH\_FAIL} (bad pun) constant is subtracted to put them into standard unix time.  The data\_points are then averaged to the nearest second from the sample rate of 5Hz.
 
 \begin{code}{from-itt-data}{From ITT DataPoints}
 ### @include "../models/data_point.rb" "From ITT DataPoints"
